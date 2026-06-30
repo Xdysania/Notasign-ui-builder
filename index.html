@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notasign UI Builder — 页面导航</title>
+  <link rel="stylesheet" href="notasign-design-system.css"/>
+  <style>
+    body { margin: 0; padding: 2rem; font-family: system-ui, sans-serif; background: #f5f6f8; color: #1a1a1a; }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    p.lead { color: #555; margin-top: 0; }
+    h2 { font-size: 1.1rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid #ddd; padding-bottom: 0.35rem; }
+    ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+  @media (min-width: 640px) { ul.cols-2 { grid-template-columns: 1fr 1fr; } }
+    a { display: block; padding: 0.75rem 1rem; background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; text-decoration: none; color: #0066cc; }
+    a:hover { border-color: #0066cc; }
+    a strong { display: block; color: #111; }
+    a span { font-size: 0.85rem; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Notasign UI Builder</h1>
+    <p class="lead">静态原型页面入口（GitHub Pages）</p>
+
+    <h2>核心页面</h2>
+    <ul class="cols-2">
+      <li><a href="ui-kit.html"><strong>UI Kit</strong><span>设计系统组件库</span></a></li>
+      <li><a href="pages/signing-list.html"><strong>签署列表</strong></span></a></li>
+      <li><a href="pages/envelope-editor.html"><strong>信封编辑器</strong></a></li>
+      <li><a href="pages/envelope-settings.html"><strong>信封设置</strong></a></li>
+      <li><a href="pages/send-settings.html"><strong>发送设置</strong></a></li>
+      <li><a href="deliverables/envelope-settings/index.html"><strong>交付物：信封设置</strong></a></li>
+    </ul>
+
+    <h2>FPT 数字签名（pages/fpt-digital-signature）</h2>
+    <ul class="cols-2">
+      <li><a href="pages/fpt-digital-signature/index.html"><strong>导航索引</strong></a></li>
+      <li><a href="pages/fpt-digital-signature/h5/signing.html"><strong>H5 签署</strong></a></li>
+      <li><a href="pages/fpt-digital-signature/pc/signing.html"><strong>PC 签署</strong></a></li>
+    </ul>
+  </div>
+</body>
+</html>
