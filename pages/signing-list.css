@@ -1,0 +1,689 @@
+/**
+ * 签署列表典型页面 — 布局与页面级样式（Figma node 1:23497）
+ * 组件样式见 ../notasign-design-system.css
+ */
+
+html,
+body.ns-app {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.ns-app {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--ns-color-bg-page);
+  color: var(--ns-color-text-primary);
+}
+
+[data-ns-business-topbar] {
+  position: relative;
+  z-index: 50;
+  flex: 0 0 var(--ns-topbar-height);
+  min-height: var(--ns-topbar-height);
+}
+
+.ns-app__body {
+  display: flex;
+  flex: 1 1 auto;
+  height: calc(100vh - var(--ns-topbar-height));
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ns-app__body > [data-ns-business-signing-sidebar] {
+  position: relative;
+  z-index: 40;
+  flex: 0 0 var(--ns-sidebar-width);
+  width: var(--ns-sidebar-width);
+  min-height: 0;
+  display: flex;
+}
+
+.ns-app__body > [data-ns-business-signing-sidebar] .ns-app__sidebar {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Main content — Figma Frame 1312321046 / 1707479395 */
+.ns-app__content {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: auto;
+  height: auto;
+  margin-left: 0;
+  margin-bottom: 0;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+  padding: 0 24px 0;
+  background-color: #fff;
+}
+
+.ns-app__content-head {
+  flex: 0 0 auto;
+}
+
+.ns-app__content > [data-ns-business-signing-table] {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ns-app__content > [data-ns-business-signing-footer] {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  flex-shrink: 0;
+}
+
+.ns-signing-table-wrapper > [data-ns-business-signing-footer] {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+.ns-app__page-title {
+  margin: 0;
+  padding: 24px 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 1px;
+  color: var(--ns-color-text-primary);
+}
+
+.ns-app__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.ns-app__filters .ns-input--search {
+  flex: 0 0 var(--ns-control-search-width);
+  width: var(--ns-control-search-width);
+  max-width: 100%;
+}
+
+.ns-app__select-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ns-app__select-wrap--time {
+  width: var(--ns-control-filter-select-width);
+}
+
+.ns-app__select-wrap--status {
+  width: var(--ns-control-filter-select-width);
+}
+
+.ns-table-wrapper,
+.ns-signing-table-wrapper {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ns-table-container {
+  display: block;
+  flex: 1 1 0;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: none;
+  background-color: #fff;
+}
+
+.ns-table-content {
+  display: block;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 1172px;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  background-color: #fff;
+}
+
+.ns-signing-table-wrapper > .ns-app__pagination-bar {
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.ns-app__table-area {
+  display: block;
+  flex: 0 0 auto;
+  height: auto;
+  min-height: 0;
+}
+
+.ns-app__table-area[hidden] {
+  display: none !important;
+}
+
+.ns-signing-table-wrap {
+  display: block;
+  flex: none;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  background-color: #fff;
+}
+
+.ns-signing-table {
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 1172px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.ns-signing-table col.col-subject {
+  width: 248px;
+}
+
+.ns-signing-table col.col-status {
+  width: 132px;
+}
+
+.ns-signing-table col.col-parties {
+  width: 230px;
+}
+
+.ns-signing-table col.col-time {
+  width: 184px;
+}
+
+.ns-signing-table col.col-actions {
+  width: 194px;
+}
+
+.ns-signing-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  box-sizing: border-box;
+  height: 40px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--ns-color-text-table-header);
+  background-color: #fff;
+  border-bottom: 1px solid #eaebf0;
+}
+
+.ns-signing-table tbody td {
+  box-sizing: border-box;
+  height: 48px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  vertical-align: middle;
+  border-bottom: 1px solid #eaebf0;
+}
+
+.ns-signing-table tbody tr:hover td {
+  background-color: var(--ns-color-bg-subtle);
+}
+
+.ns-signing-table .ns-table__cell--name,
+.ns-signing-table .ns-table__cell--meta,
+.ns-signing-table .ns-table-status {
+  color: var(--ns-color-text-primary);
+}
+
+.ns-signing-table .ns-table__cell--name .ns-table__ellipsis {
+  max-width: 216px;
+}
+
+.ns-signing-table .ns-table-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ns-signing-table .ns-table-status__dot--info,
+.ns-signing-table .ns-table-status__dot--warning {
+  background-color: #5f11f1;
+}
+
+.ns-signing-table .ns-table-status__dot--normal {
+  background-color: var(--ns-color-bg-icon);
+}
+
+.ns-signing-table thead th.ns-table__col--actions,
+.ns-signing-table .ns-table__cell--actions {
+  text-align: left;
+}
+
+.ns-signing-table .ns-table__ops {
+  display: grid;
+  grid-template-columns: 97px 32px;
+  width: 145px;
+  margin: 0;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.ns-signing-table .ns-btn--table {
+  width: 97px;
+  min-width: 97px;
+}
+
+.ns-signing-table .ns-app__table-more-wrap {
+  width: 32px;
+  justify-self: center;
+}
+
+.ns-app__table-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ns-app__table-more-btn:hover,
+.ns-app__table-more-btn:focus-visible,
+.ns-app__table-more-wrap.is-open .ns-app__table-more-btn {
+  background-color: var(--ns-color-bg-hover-strong);
+}
+
+.ns-app__table-more-btn img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* 表格更多操作 — Figma 1:23440 */
+.ns-app__table-more-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ns-app__flyout--table-more {
+  position: fixed;
+  left: var(--ns-table-more-flyout-left, 0);
+  right: auto;
+  top: var(--ns-table-more-flyout-top, 0);
+  z-index: calc(var(--ns-z-dropdown) + 5);
+  min-width: 120px;
+  max-height: var(--ns-table-more-flyout-max-height, none);
+  padding: 4px;
+  overflow-y: auto;
+}
+
+.ns-app__table-more-wrap:not(.is-open):hover .ns-app__flyout--table-more,
+.ns-app__table-more-wrap:not(.is-open):focus-within .ns-app__flyout--table-more {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ns-app__flyout--table-more::before {
+  height: 4px;
+}
+
+.ns-app__flyout--table-more .ns-app__flyout-menu-item--table-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: var(--ns-radius-sm);
+  font-size: var(--ns-font-size-sm);
+  line-height: 22px;
+  color: var(--ns-color-text-primary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ns-app__flyout--table-more .ns-app__flyout-menu-item--table-more:hover,
+.ns-app__flyout--table-more .ns-app__flyout-menu-item--table-more:focus-visible {
+  background-color: var(--ns-color-bg-hover);
+  color: var(--ns-color-text-primary);
+  text-decoration: none;
+}
+
+.ns-signing-table .ns-table__cell--actions,
+.ns-signing-table .ns-table__ops {
+  overflow: visible;
+}
+
+.ns-signing-table tbody tr:has(.ns-app__table-more-wrap.is-open) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pagination — Figma 1:23760 */
+.ns-app__pagination-bar {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 8px 0;
+  margin: 0;
+  border-top: 1px solid #eaebf0;
+  background-color: #fff;
+}
+
+.ns-app__pagination {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: 100%;
+  margin: 0;
+  overflow: visible;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ns-color-text-primary);
+}
+
+.ns-app__pagination > * {
+  flex-shrink: 0;
+}
+
+.ns-app__pagination-total {
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.ns-app__pagination-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border: none;
+  border-radius: 2px;
+  background-color: #f2f3f6;
+  cursor: pointer;
+}
+
+.ns-app__pagination-arrow:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ns-app__pagination-arrow img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.ns-app__pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ns-app__pagination-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 5px;
+  border: 1px solid #eaebf0;
+  border-radius: 2px;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ns-color-text-primary);
+  cursor: pointer;
+}
+
+.ns-app__pagination-page.is-active {
+  border-color: #5f11f1;
+  font-weight: 500;
+  color: #5f11f1;
+}
+
+.ns-app__pagination-size {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 5px 12px;
+  border: 1px solid #eaebf0;
+  border-radius: 2px;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ns-color-text-primary);
+  cursor: pointer;
+}
+
+.ns-app__pagination-size-wrap {
+  display: inline-flex;
+}
+
+.ns-app__pagination-size-wrap::after {
+  display: none;
+}
+
+.ns-app__pagination-size-wrap:not(.is-open):hover .ns-app__flyout--pagination-size,
+.ns-app__pagination-size-wrap:not(.is-open):focus-within .ns-app__flyout--pagination-size {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ns-app__pagination-size-wrap.is-open .ns-app__pagination-size img {
+  transform: rotate(180deg);
+}
+
+.ns-app__flyout--pagination-size {
+  --ns-flyout-transform-closed: translateX(-50%) translateY(2px);
+  --ns-flyout-transform-open: translateX(-50%) translateY(0);
+
+  top: auto;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  right: auto;
+  width: max-content;
+  min-width: 100%;
+  max-width: 180px;
+  padding: 4px;
+}
+
+.ns-app__flyout--pagination-size::before {
+  top: 100%;
+  bottom: auto;
+  height: 8px;
+}
+
+.ns-app__pagination-size-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  padding: 0 12px;
+  border: none;
+  border-radius: var(--ns-radius-sm);
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--ns-color-text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ns-app__pagination-size-option:hover,
+.ns-app__pagination-size-option:focus-visible {
+  background-color: var(--ns-color-bg-hover);
+  outline: none;
+}
+
+.ns-app__pagination-size-option.is-selected {
+  color: var(--ns-color-brand);
+}
+
+.ns-app__pagination-size img {
+  display: block;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.ns-app__pagination-jump-label {
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.ns-app__pagination-jump-input {
+  box-sizing: border-box;
+  width: 48px;
+  height: 28px;
+  border: 1px solid #eaebf0;
+  border-radius: 2px;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--ns-color-text-primary);
+}
+
+.ns-app__pagination-jump-input:focus {
+  outline: none;
+  border-color: #5f11f1;
+}
+
+/* Footer — Figma 1:23761 (sits directly under table pagination, no flex gap) */
+.ns-app__content [data-ns-business-signing-footer] .ns-app__footer {
+  margin-top: 0;
+}
+
+.ns-app__footer {
+  flex-shrink: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-sizing: border-box;
+  width: calc(100% + 48px);
+  margin-left: -24px;
+  margin-right: -24px;
+  min-height: 40px;
+  padding: 10px 24px;
+  padding-bottom: 10px;
+  border-top: 1px solid var(--ns-color-border);
+  background-color: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+}
+
+.ns-app__footer-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  color: #929292;
+  cursor: pointer;
+}
+
+.ns-app__footer-lang img {
+  display: block;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+}
+
+.ns-app__footer-divider {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ns-app__footer-divider img {
+  display: block;
+  height: 12px;
+  width: auto;
+}
+
+.ns-app__footer-copy {
+  margin: 0;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  color: #929292;
+}
+

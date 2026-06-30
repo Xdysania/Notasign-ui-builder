@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>信封设置 — NotaSign</title>
+  <link rel="stylesheet" href="notasign-design-system.css" />
+  <link rel="stylesheet" href="envelope-settings.css" />
+  <script src="components/i18n.js" defer></script>
+  <script src="components/select.js" defer></script>
+  <script src="components/input-number.js" defer></script>
+  <script src="envelope-settings.js" defer></script>
+</head>
+<body class="ns-envelope-settings-app">
+  <div class="ns-envelope-settings-shell">
+    <header class="ns-envelope-settings-topbar">
+      <div class="ns-envelope-settings-topbar__left">
+        <button class="ns-envelope-settings-topbar__close" type="button" aria-label="关闭">
+          <img src="assets/envelope-editor/icon-close.svg" width="20" height="20" alt="" />
+        </button>
+        <span class="ns-envelope-settings-topbar__divider" aria-hidden="true"></span>
+        <h1 class="ns-envelope-settings-topbar__title">创建信封：请上传签署文档并添加收件人</h1>
+      </div>
+
+      <div class="ns-envelope-settings-topbar__actions">
+        <button class="ns-btn ns-btn--lg ns-btn--secondary ns-btn--secondary-brand" type="button">直接发送</button>
+        <button class="ns-btn ns-btn--lg ns-btn--primary" type="submit" form="envelope-settings-form">下一步</button>
+      </div>
+    </header>
+
+    <main class="ns-envelope-settings-main">
+      <form class="ns-envelope-settings-form" id="envelope-settings-form">
+        <section class="ns-envelope-settings-panel">
+          <div class="ns-envelope-settings-panel__head">
+            <div class="ns-envelope-settings-panel__title-wrap">
+              <h2 class="ns-envelope-settings-panel__title">上传文档</h2>
+            </div>
+            <button class="ns-envelope-settings-link-btn" type="button">使用模板</button>
+          </div>
+
+          <div class="ns-envelope-settings-upload-board" data-envelope-upload>
+            <input
+              id="envelope-settings-upload"
+              class="ns-envelope-settings-upload-board__input"
+              type="file"
+              multiple
+              accept=".doc,.docx,.pdf,.png,.jpg,.jpeg,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,image/png,image/jpeg"
+              hidden
+            />
+            <div class="ns-envelope-settings-upload-board__inner" data-upload-board></div>
+          </div>
+        </section>
+
+        <section class="ns-envelope-settings-panel ns-envelope-settings-panel--recipients">
+          <div class="ns-envelope-settings-panel__head">
+            <div class="ns-envelope-settings-panel__title-wrap">
+              <h2 class="ns-envelope-settings-panel__title">添加收件人</h2>
+              <label class="ns-check">
+                <input class="ns-check__input" type="checkbox" checked data-sequential-sign-toggle aria-controls="recipient-list" />
+                <span>按照顺序签署</span>
+              </label>
+              <button class="ns-envelope-settings-link-btn" type="button">顺序预览</button>
+            </div>
+            <button
+              class="ns-envelope-settings-panel__collapse"
+              type="button"
+              aria-label="收起收件人配置"
+              aria-expanded="true"
+              data-collapse-trigger
+              data-collapse-target="recipient-list"
+            >
+              <img src="assets/envelope-settings/icon-chevron-down.svg" width="20" height="20" alt="" />
+            </button>
+          </div>
+
+          <div class="ns-envelope-settings-recipient-list" id="recipient-list" data-recipient-list></div>
+
+          <div class="ns-envelope-settings-recipient-panel__footer">
+            <div class="ns-envelope-settings-recipient-panel__actions">
+              <button class="ns-envelope-settings-recipient-action ns-envelope-settings-recipient-action--outline" type="button" data-add-recipient>
+                <img src="assets/envelope-settings/icon-plus.svg" width="16" height="16" alt="" />
+                <span>添加收件人</span>
+              </button>
+              <button class="ns-envelope-settings-recipient-action ns-envelope-settings-recipient-action--ghost" type="button" data-add-e-seal>
+                <img src="assets/envelope-settings/icon-e-seal.svg" width="16" height="16" alt="" />
+                <span>添加电子印章</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="ns-envelope-settings-panel ns-envelope-settings-panel--task">
+          <div class="ns-envelope-settings-panel__head ns-envelope-settings-panel__head--task">
+            <span class="ns-envelope-settings-panel__accent" aria-hidden="true"></span>
+            <div class="ns-envelope-settings-panel__head-main">
+              <h2 class="ns-envelope-settings-panel__title">任务信息</h2>
+              <button
+                class="ns-envelope-settings-panel__collapse"
+                type="button"
+                aria-label="收起任务信息"
+                aria-expanded="true"
+                data-collapse-trigger
+                data-collapse-target="task-info-panel"
+              >
+                <img src="assets/envelope-settings/icon-chevron-down.svg" width="20" height="20" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div class="ns-envelope-settings-task" id="task-info-panel">
+            <label class="ns-envelope-settings-task-field">
+              <span class="ns-envelope-settings-task-field__label">签署主题</span>
+              <span class="ns-envelope-settings-task-input ns-envelope-settings-task-input--counter" data-char-counter data-char-max="100">
+                <input class="ns-input" type="text" placeholder="请输入" maxlength="100" name="sign-subject" data-task-subject />
+                <span class="ns-envelope-settings-task-input__count" data-char-counter-value>0/100</span>
+              </span>
+            </label>
+
+            <label class="ns-envelope-settings-task-field">
+              <span class="ns-envelope-settings-task-field__label">备注</span>
+              <span class="ns-envelope-settings-task-textarea-wrap" data-char-counter data-char-max="10000">
+                <textarea class="ns-input ns-textarea" placeholder="请输入" maxlength="10000" name="task-remark" data-task-remark></textarea>
+                <span class="ns-envelope-settings-task-textarea__count" data-char-counter-value>0/10000</span>
+              </span>
+            </label>
+
+            <div class="ns-envelope-settings-task-field">
+              <span class="ns-envelope-settings-task-field__label">抄送人</span>
+              <div class="ns-envelope-settings-task-cc" data-task-cc-list></div>
+              <button class="ns-envelope-settings-task-cc-btn" type="button" data-add-cc-recipient>
+                <img src="assets/envelope-settings/icon-plus.svg" width="16" height="16" alt="" />
+                <span>添加抄送人</span>
+              </button>
+            </div>
+
+            <div class="ns-envelope-settings-task-field">
+              <div class="ns-envelope-settings-task-field__label-row">
+                <span class="ns-envelope-settings-task-field__label">信封发出后，收件人必须签署文档的天数限制为</span>
+                <span class="ns-help-tip">
+                  <button type="button" class="ns-help-tip__trigger" aria-describedby="task-expiry-tip" aria-label="说明">
+                    <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                  </button>
+                  <span class="ns-help-tip__bubble" id="task-expiry-tip" role="tooltip">设置收件人需在信封发出后多少天内完成签署</span>
+                </span>
+              </div>
+              <div class="ns-envelope-settings-task-inline">
+                <div class="ns-input-number ns-envelope-settings-task-number">
+                  <input class="ns-input-number__input" type="text" inputmode="numeric" name="expiry-days" value="90" aria-label="签署天数限制" />
+                  <div class="ns-input-number__controls" aria-hidden="false">
+                    <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增加"></button>
+                    <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="减少"></button>
+                  </div>
+                </div>
+                <span class="ns-envelope-settings-task-suffix">天后</span>
+              </div>
+            </div>
+
+            <div class="ns-envelope-settings-task-field">
+              <div class="ns-envelope-settings-task-field__label-row">
+                <span class="ns-envelope-settings-task-field__label">提醒频率</span>
+                <span class="ns-help-tip">
+                  <button type="button" class="ns-help-tip__trigger" aria-describedby="task-reminder-tip" aria-label="说明">
+                    <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                  </button>
+                  <span class="ns-help-tip__bubble" id="task-reminder-tip" role="tooltip">设置向未完成签署的收件人发送提醒的频率</span>
+                </span>
+              </div>
+              <div class="ns-select ns-envelope-settings-task-select" data-ns-select data-value="none" data-default-value="none" aria-label="提醒频率">
+                <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="ns-select__value">无</span>
+                  <img class="ns-select__chevron" src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+                </button>
+                <div class="ns-select__menu" role="listbox" hidden>
+                  <button type="button" class="ns-select__option is-selected" role="option" data-value="none" aria-selected="true">无</button>
+                  <button type="button" class="ns-select__option" role="option" data-value="daily" aria-selected="false">每天</button>
+                  <button type="button" class="ns-select__option" role="option" data-value="every-2-days" aria-selected="false">每 2 天</button>
+                  <button type="button" class="ns-select__option" role="option" data-value="every-3-days" aria-selected="false">每 3 天</button>
+                  <button type="button" class="ns-select__option" role="option" data-value="weekly" aria-selected="false">每周</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="ns-envelope-settings-footer">
+          <button class="ns-btn ns-btn--lg ns-btn--primary ns-envelope-settings-footer__submit" type="submit">下一步</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <template id="recipient-card-template">
+    <article class="ns-envelope-settings-recipient-card" data-recipient-card data-accent="lilac">
+      <div class="ns-envelope-settings-recipient-card__index">
+        <input
+          class="ns-envelope-settings-recipient-card__index-input"
+          type="text"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          value="1"
+          aria-label="签署顺序"
+          data-recipient-index
+        />
+      </div>
+      <section class="ns-envelope-settings-recipient-card__main">
+        <div class="ns-envelope-settings-recipient-card__drag" data-recipient-drag-handle aria-label="拖动调整顺序">
+          <div class="ns-envelope-settings-recipient-card__accent" aria-hidden="true"></div>
+          <div class="ns-envelope-settings-recipient-card__icon" aria-hidden="true">
+            <img src="assets/envelope-settings/icon-recipient-role.svg" width="32" height="32" alt="" />
+          </div>
+        </div>
+        <div class="ns-envelope-settings-recipient-card__fields">
+          <label class="ns-envelope-settings-field ns-envelope-settings-field--compact">
+            <span class="ns-envelope-settings-field__label">姓名<span class="ns-envelope-settings-field__required">*</span></span>
+            <input class="ns-input" type="text" placeholder="请输入" />
+          </label>
+
+          <div class="ns-envelope-settings-field">
+            <span class="ns-envelope-settings-field__label">发送方式<span class="ns-envelope-settings-field__required">*</span></span>
+            <div class="ns-envelope-settings-delivery">
+              <label class="ns-check">
+                <input class="ns-check__input" type="checkbox" checked data-delivery-toggle="email" />
+                <span>邮箱</span>
+              </label>
+              <label class="ns-check">
+                <input class="ns-check__input" type="checkbox" checked data-delivery-toggle="phone" />
+                <span>手机</span>
+              </label>
+            </div>
+            <div data-recipient-email-field>
+              <input class="ns-input" type="email" placeholder="请输入邮箱" />
+            </div>
+          </div>
+
+          <div class="ns-envelope-settings-phone" data-recipient-phone-field>
+            <div class="ns-select" data-ns-select data-value="cn" data-default-value="cn" aria-label="国家区号">
+              <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="ns-select__value">+86</span>
+                <img class="ns-select__chevron" src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+              </button>
+              <div class="ns-select__menu" role="listbox" hidden>
+                <button type="button" class="ns-select__option is-selected" role="option" data-value="cn" data-trigger-text="+86" aria-selected="true">中国 (+86)</button>
+                <button type="button" class="ns-select__option" role="option" data-value="sg" data-trigger-text="+65" aria-selected="false">新加坡 (+65)</button>
+                <button type="button" class="ns-select__option" role="option" data-value="id" data-trigger-text="+62" aria-selected="false">印尼 (+62)</button>
+              </div>
+            </div>
+            <input class="ns-input" type="tel" placeholder="请输入" />
+          </div>
+        </div>
+
+        <div class="ns-envelope-settings-recipient-card__actions">
+          <div class="ns-envelope-settings-recipient-custom" data-recipient-custom>
+            <button
+              class="ns-envelope-settings-recipient-card__custom"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="menu"
+              data-recipient-custom-trigger
+            >
+              <span>自定义</span>
+              <img src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+            </button>
+            <div class="ns-envelope-settings-recipient-custom__menu" role="menu" aria-label="自定义选项" hidden>
+              <button class="ns-envelope-settings-recipient-custom__item" type="button" role="menuitem" data-recipient-custom-action="verify">
+                <img src="assets/envelope-settings/icon-custom-identity.svg" width="24" height="24" alt="" />
+                <span class="ns-envelope-settings-recipient-custom__copy">
+                  <strong>添加身份核验</strong>
+                  <small>确保正确的人访问信封</small>
+                </span>
+              </button>
+              <button class="ns-envelope-settings-recipient-custom__item" type="button" role="menuitem" data-recipient-custom-action="reading">
+                <img src="assets/envelope-settings/icon-custom-reading.svg" width="24" height="24" alt="" />
+                <span class="ns-envelope-settings-recipient-custom__copy">
+                  <strong>添加阅读要求</strong>
+                  <small>为此收件人添加阅读要求</small>
+                </span>
+              </button>
+            </div>
+          </div>
+          <button class="ns-envelope-settings-icon-btn" type="button" aria-label="删除收件人" data-remove-recipient>
+            <img src="assets/envelope-settings/icon-delete.svg" width="16" height="16" alt="" />
+          </button>
+        </div>
+      </section>
+      <div class="ns-envelope-settings-recipient-card__body">
+        <section class="ns-envelope-settings-subcard ns-envelope-settings-subcard--signature">
+          <div class="ns-envelope-settings-subcard__head">
+            <span class="ns-envelope-settings-subcard__title" data-signature-title>签名类型：电子签名</span>
+            <button
+              class="ns-envelope-settings-subcard__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-label="展开签名类型"
+              data-collapse-trigger
+            >
+              <img src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+            </button>
+          </div>
+          <div class="ns-envelope-settings-subcard__body" hidden>
+            <div class="ns-envelope-settings-field ns-envelope-settings-field--signature-select">
+              <div class="ns-select" data-signature-select data-ns-select data-value="electronic" data-default-value="electronic" aria-label="签名类型">
+                <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="ns-select__value">电子签名</span>
+                  <img class="ns-select__chevron" src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+                </button>
+                <div class="ns-select__menu" role="listbox" hidden>
+                  <button type="button" class="ns-select__option is-selected" role="option" data-value="electronic" aria-selected="true">电子签名</button>
+                  <button type="button" class="ns-select__option" role="option" data-value="digital" aria-selected="false">数字签名</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div data-recipient-verify-slot></div>
+        <div data-recipient-reading-slot></div>
+      </div>
+    </article>
+  </template>
+
+  <template id="recipient-reading-template">
+    <section class="ns-envelope-settings-subcard ns-envelope-settings-subcard--reading">
+      <div class="ns-envelope-settings-subcard__head">
+        <span class="ns-envelope-settings-subcard__title">阅读要求</span>
+        <div class="ns-envelope-settings-subcard__head-actions">
+          <button class="ns-envelope-settings-icon-btn" type="button" aria-label="删除阅读要求" data-remove-reading>
+            <img src="assets/envelope-settings/icon-delete.svg" width="16" height="16" alt="" />
+          </button>
+          <button
+            class="ns-envelope-settings-subcard__toggle"
+            type="button"
+            aria-expanded="true"
+            aria-label="收起阅读要求"
+            data-collapse-trigger
+          >
+            <img src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+          </button>
+        </div>
+      </div>
+      <div class="ns-envelope-settings-subcard__body">
+        <div class="ns-envelope-settings-reading-options">
+          <label class="ns-switch">
+            <input class="ns-switch__input" type="checkbox" checked data-reading-last-page-toggle />
+            <span class="ns-switch__label">强制阅读到最后一页</span>
+          </label>
+
+          <div class="ns-envelope-settings-reading-fixed-time">
+            <label class="ns-switch">
+              <input class="ns-switch__input" type="checkbox" checked data-reading-fixed-time-toggle />
+              <span class="ns-switch__label">需阅读固定时间</span>
+            </label>
+            <div class="ns-envelope-settings-reading-fixed-time__fields" data-reading-fixed-time-fields>
+              <div class="ns-input-number ns-envelope-settings-reading-number">
+                <input
+                  class="ns-input-number__input"
+                  type="text"
+                  inputmode="numeric"
+                  value="30"
+                  aria-label="阅读秒数"
+                  data-reading-seconds
+                />
+                <div class="ns-input-number__controls" aria-hidden="false">
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增加"></button>
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="减少"></button>
+                </div>
+              </div>
+              <span class="ns-envelope-settings-reading-suffix">秒</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <template id="recipient-verify-template">
+    <section class="ns-envelope-settings-subcard ns-envelope-settings-subcard--verify">
+      <div class="ns-envelope-settings-subcard__head">
+        <span class="ns-envelope-settings-subcard__title" data-verify-title>身份核验：</span>
+        <div class="ns-envelope-settings-subcard__head-actions">
+          <button class="ns-envelope-settings-icon-btn" type="button" aria-label="删除身份核验" data-remove-verify>
+            <img src="assets/envelope-settings/icon-delete.svg" width="16" height="16" alt="" />
+          </button>
+          <button class="ns-envelope-settings-subcard__toggle" type="button" aria-expanded="true" aria-label="收起身份核验" data-collapse-trigger>
+            <img src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+          </button>
+        </div>
+      </div>
+
+      <div class="ns-envelope-settings-subcard__body">
+        <div class="ns-envelope-settings-field ns-envelope-settings-field--verify-select">
+          <div
+            class="ns-envelope-settings-verify-select"
+            data-verify-select
+            data-value="identity"
+            data-default-value="identity"
+            aria-label="身份核验方式"
+          >
+            <button type="button" class="ns-envelope-settings-verify-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="ns-envelope-settings-verify-select__value">Nota Sign身份核验</span>
+              <img class="ns-envelope-settings-verify-select__chevron" src="assets/envelope-settings/icon-chevron-down-sm.svg" width="16" height="16" alt="" />
+            </button>
+            <div class="ns-envelope-settings-verify-select__menu" role="listbox" hidden>
+              <button type="button" class="ns-envelope-settings-verify-select__option" role="option" data-value="access-code" aria-selected="false">
+                <strong>访问码</strong>
+                <small>输入一个只有你和该收件人知晓的访问码用于身份核验</small>
+              </button>
+              <button type="button" class="ns-envelope-settings-verify-select__option is-selected" role="option" data-value="identity" aria-selected="true">
+                <strong>Nota Sign身份核验</strong>
+                <small>收件人需提供有效身份证件和视频自拍进行身份核验。</small>
+              </button>
+              <button type="button" class="ns-envelope-settings-verify-select__option" role="option" data-value="email" aria-selected="false">
+                <strong>邮箱核验</strong>
+                <small>收件人将通过邮箱，接收身份核验码</small>
+              </button>
+              <button type="button" class="ns-envelope-settings-verify-select__option" role="option" data-value="sms-otp" aria-selected="false">
+                <strong>短信OTP</strong>
+                <small>收件人将通过短信，接收身份核验码</small>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ns-envelope-settings-verify-panels">
+          <div class="ns-envelope-settings-verify-panel" data-verify-panel="identity">
+            <label class="ns-switch">
+              <input class="ns-switch__input" type="checkbox" checked />
+              <span class="ns-switch__label">允许核验人更改姓名</span>
+            </label>
+            <div class="ns-envelope-settings-subcard__hint">
+              <p>收件人需要用有效的身份证件和视频自拍来确认身份。</p>
+              <p>注：请确保填写的收件人姓名与验证身份信息的姓名一致。</p>
+            </div>
+          </div>
+
+          <div class="ns-envelope-settings-verify-panel" data-verify-panel="email" hidden>
+            <input class="ns-input" type="email" placeholder="请填写用于接收身份核验码的邮箱" data-verify-email-input />
+            <div class="ns-envelope-settings-subcard__hint">
+              <p>收件人需通过邮箱验证码核验身份后方可查看信封。</p>
+            </div>
+          </div>
+
+          <div class="ns-envelope-settings-verify-panel" data-verify-panel="sms-otp" hidden>
+            <input class="ns-input" type="tel" placeholder="请填写用于接收身份核验码的手机号" data-verify-phone-input />
+            <div class="ns-envelope-settings-subcard__hint">
+              <p>收件人需通过短信验证码核验身份后方可查看信封。</p>
+            </div>
+          </div>
+
+          <div class="ns-envelope-settings-verify-panel" data-verify-panel="access-code" hidden>
+            <div class="ns-input--with-icon ns-envelope-settings-verify-input">
+              <input class="ns-input" type="text" placeholder="请设置一个自定义的访问码" data-access-code-input />
+              <button class="ns-envelope-settings-verify-input__copy" type="button" aria-label="复制访问码" data-copy-access-code>
+                <img src="assets/envelope-settings/icon-copy.svg" width="16" height="16" alt="" />
+              </button>
+            </div>
+            <ul class="ns-envelope-settings-subcard__hint ns-envelope-settings-subcard__hint--list">
+              <li>Nota Sign不会向签署方发送访问码，需要您在发送合同后另外告知签署方；</li>
+              <li>访问码支持字母或数字，字母不区分大小写；</li>
+              <li>设置后您可在合同详情中查询已设置的访问码。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <template id="task-cc-card-template">
+    <div class="ns-envelope-settings-task-cc-card" data-task-cc-card>
+      <div class="ns-envelope-settings-task-cc-row">
+        <input class="ns-input" type="text" placeholder="姓名" autocomplete="name" data-cc-name />
+        <input class="ns-input" type="email" placeholder="邮件" autocomplete="email" data-cc-email />
+        <button class="ns-envelope-settings-task-cc-remove" type="button" aria-label="删除抄送人" data-remove-cc>
+          <img src="assets/envelope-settings/icon-delete.svg" width="16" height="16" alt="" />
+        </button>
+      </div>
+    </div>
+  </template>
+</body>
+</html>

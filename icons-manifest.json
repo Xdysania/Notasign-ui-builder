@@ -1,0 +1,1164 @@
+[
+  {
+    "id": "3424:8512",
+    "name": "类型=线性, icon名称=复制",
+    "type": "linear",
+    "slug": "copy",
+    "file": "assets/icons/copy-linear.svg"
+  },
+  {
+    "id": "3424:8516",
+    "name": "类型=线性, icon名称=警告",
+    "type": "linear",
+    "slug": "warning",
+    "file": "assets/icons/warning-linear.svg"
+  },
+  {
+    "id": "3424:8520",
+    "name": "类型=线性, icon名称=收起",
+    "type": "linear",
+    "slug": "collapse",
+    "file": "assets/icons/collapse-linear.svg"
+  },
+  {
+    "id": "3424:8524",
+    "name": "类型=线性, icon名称=提示",
+    "type": "linear",
+    "slug": "info",
+    "file": "assets/icons/info-linear.svg"
+  },
+  {
+    "id": "3424:8528",
+    "name": "类型=线性, icon名称=下载01",
+    "type": "linear",
+    "slug": "download-01",
+    "file": "assets/icons/download-01-linear.svg"
+  },
+  {
+    "id": "3424:8532",
+    "name": "类型=线性, icon名称=下载02",
+    "type": "linear",
+    "slug": "download-02",
+    "file": "assets/icons/download-02-linear.svg"
+  },
+  {
+    "id": "3424:8536",
+    "name": "类型=面性, icon名称=下载02",
+    "type": "filled",
+    "slug": "download-02",
+    "file": "assets/icons/download-02-filled.svg"
+  },
+  {
+    "id": "3424:8540",
+    "name": "类型=线性, icon名称=箭头-下",
+    "type": "linear",
+    "slug": "arrow-down",
+    "file": "assets/icons/arrow-down-linear.svg"
+  },
+  {
+    "id": "3424:8542",
+    "name": "类型=线性, icon名称=上传01",
+    "type": "linear",
+    "slug": "upload-01",
+    "file": "assets/icons/upload-01-linear.svg"
+  },
+  {
+    "id": "3424:8546",
+    "name": "类型=线性, icon名称=上传02",
+    "type": "linear",
+    "slug": "upload-02",
+    "file": "assets/icons/upload-02-linear.svg"
+  },
+  {
+    "id": "3424:8550",
+    "name": "类型=面性, icon名称=上传02",
+    "type": "filled",
+    "slug": "upload-02",
+    "file": "assets/icons/upload-02-filled.svg"
+  },
+  {
+    "id": "3424:8554",
+    "name": "类型=线性, icon名称=箭头-右",
+    "type": "linear",
+    "slug": "arrow-right",
+    "file": "assets/icons/arrow-right-linear.svg"
+  },
+  {
+    "id": "3424:8556",
+    "name": "类型=线性, icon名称=加载中",
+    "type": "linear",
+    "slug": "loading",
+    "file": "assets/icons/loading-linear.svg"
+  },
+  {
+    "id": "3424:8560",
+    "name": "类型=线性, icon名称=箭头-左",
+    "type": "linear",
+    "slug": "arrow-left",
+    "file": "assets/icons/arrow-left-linear.svg"
+  },
+  {
+    "id": "3424:8562",
+    "name": "类型=线性, icon名称=搜索",
+    "type": "linear",
+    "slug": "search",
+    "file": "assets/icons/search-linear.svg"
+  },
+  {
+    "id": "3424:8566",
+    "name": "类型=线性, icon名称=筛选",
+    "type": "linear",
+    "slug": "filter",
+    "file": "assets/icons/filter-linear.svg"
+  },
+  {
+    "id": "3424:8570",
+    "name": "类型=线性, icon名称=删除",
+    "type": "linear",
+    "slug": "delete",
+    "file": "assets/icons/delete-linear.svg"
+  },
+  {
+    "id": "3424:8574",
+    "name": "类型=线性, icon名称=展开",
+    "type": "linear",
+    "slug": "expand",
+    "file": "assets/icons/expand-linear.svg"
+  },
+  {
+    "id": "3424:8578",
+    "name": "类型=线性, icon名称=箭头-上",
+    "type": "linear",
+    "slug": "arrow-up",
+    "file": "assets/icons/arrow-up-linear.svg"
+  },
+  {
+    "id": "3424:8580",
+    "name": "类型=线性, icon名称=新增",
+    "type": "linear",
+    "slug": "add",
+    "file": "assets/icons/add-linear.svg"
+  },
+  {
+    "id": "3424:8582",
+    "name": "类型=线性, icon名称=客户01",
+    "type": "linear",
+    "slug": "customer-01",
+    "file": "assets/icons/customer-01-linear.svg"
+  },
+  {
+    "id": "3424:8586",
+    "name": "类型=线性, icon名称=账户01",
+    "type": "linear",
+    "slug": "account-01",
+    "file": "assets/icons/account-01-linear.svg"
+  },
+  {
+    "id": "3424:8590",
+    "name": "类型=线性, icon名称=账户02",
+    "type": "linear",
+    "slug": "account-02",
+    "file": "assets/icons/account-02-linear.svg"
+  },
+  {
+    "id": "3424:8594",
+    "name": "类型=线性, icon名称=账户03",
+    "type": "linear",
+    "slug": "account-03",
+    "file": "assets/icons/account-03-linear.svg"
+  },
+  {
+    "id": "3424:8598",
+    "name": "类型=线性, icon名称=链接",
+    "type": "linear",
+    "slug": "link",
+    "file": "assets/icons/link-linear.svg"
+  },
+  {
+    "id": "3424:8602",
+    "name": "类型=线性, icon名称=付款",
+    "type": "linear",
+    "slug": "payment",
+    "file": "assets/icons/payment-linear.svg"
+  },
+  {
+    "id": "3424:8606",
+    "name": "类型=线性, icon名称=退款",
+    "type": "linear",
+    "slug": "refund",
+    "file": "assets/icons/refund-linear.svg"
+  },
+  {
+    "id": "3424:8610",
+    "name": "类型=线性, icon名称=导出",
+    "type": "linear",
+    "slug": "export",
+    "file": "assets/icons/export-linear.svg"
+  },
+  {
+    "id": "3424:8614",
+    "name": "类型=线性, icon名称=价格01",
+    "type": "linear",
+    "slug": "price-01",
+    "file": "assets/icons/price-01-linear.svg"
+  },
+  {
+    "id": "3424:8618",
+    "name": "类型=面性, icon名称=价格01",
+    "type": "filled",
+    "slug": "price-01",
+    "file": "assets/icons/price-01-filled.svg"
+  },
+  {
+    "id": "3424:8623",
+    "name": "类型=面性, icon名称=导出",
+    "type": "filled",
+    "slug": "export",
+    "file": "assets/icons/export-filled.svg"
+  },
+  {
+    "id": "3424:8627",
+    "name": "类型=面性, icon名称=退款",
+    "type": "filled",
+    "slug": "refund",
+    "file": "assets/icons/refund-filled.svg"
+  },
+  {
+    "id": "3424:8631",
+    "name": "类型=面性, icon名称=付款",
+    "type": "filled",
+    "slug": "payment",
+    "file": "assets/icons/payment-filled.svg"
+  },
+  {
+    "id": "3424:8635",
+    "name": "类型=面性, icon名称=链接",
+    "type": "filled",
+    "slug": "link",
+    "file": "assets/icons/link-filled.svg"
+  },
+  {
+    "id": "3424:8639",
+    "name": "类型=面性, icon名称=账户03",
+    "type": "filled",
+    "slug": "account-03",
+    "file": "assets/icons/account-03-filled.svg"
+  },
+  {
+    "id": "3424:8643",
+    "name": "类型=线性, icon名称=文档01",
+    "type": "linear",
+    "slug": "document-01",
+    "file": "assets/icons/document-01-linear.svg"
+  },
+  {
+    "id": "3424:8647",
+    "name": "类型=线性, icon名称=刷新",
+    "type": "linear",
+    "slug": "refresh",
+    "file": "assets/icons/refresh-linear.svg"
+  },
+  {
+    "id": "3424:8651",
+    "name": "类型=线性, icon名称=销售01",
+    "type": "linear",
+    "slug": "sales-01",
+    "file": "assets/icons/sales-01-linear.svg"
+  },
+  {
+    "id": "3424:8655",
+    "name": "类型=面性, icon名称=销售01",
+    "type": "filled",
+    "slug": "sales-01",
+    "file": "assets/icons/sales-01-filled.svg"
+  },
+  {
+    "id": "3424:8659",
+    "name": "类型=面性, icon名称=刷新",
+    "type": "filled",
+    "slug": "refresh",
+    "file": "assets/icons/refresh-filled.svg"
+  },
+  {
+    "id": "3424:8663",
+    "name": "类型=面性, icon名称=文档01",
+    "type": "filled",
+    "slug": "document-01",
+    "file": "assets/icons/document-01-filled.svg"
+  },
+  {
+    "id": "3424:8667",
+    "name": "类型=面性, icon名称=账户01",
+    "type": "filled",
+    "slug": "account-01",
+    "file": "assets/icons/account-01-filled.svg"
+  },
+  {
+    "id": "3424:8671",
+    "name": "类型=面性, icon名称=账户02",
+    "type": "filled",
+    "slug": "account-02",
+    "file": "assets/icons/account-02-filled.svg"
+  },
+  {
+    "id": "3424:8675",
+    "name": "类型=线性, icon名称=产品配置",
+    "type": "linear",
+    "slug": "product-config",
+    "file": "assets/icons/product-config-linear.svg"
+  },
+  {
+    "id": "3424:8679",
+    "name": "类型=线性, icon名称=套餐管理",
+    "type": "linear",
+    "slug": "package-manage",
+    "file": "assets/icons/package-manage-linear.svg"
+  },
+  {
+    "id": "3424:8683",
+    "name": "类型=线性, icon名称=套餐02",
+    "type": "linear",
+    "slug": "package-02",
+    "file": "assets/icons/package-02-linear.svg"
+  },
+  {
+    "id": "3424:8688",
+    "name": "类型=面性, icon名称=套餐02",
+    "type": "filled",
+    "slug": "package-02",
+    "file": "assets/icons/package-02-filled.svg"
+  },
+  {
+    "id": "3424:8693",
+    "name": "类型=线性, icon名称=订单管理",
+    "type": "linear",
+    "slug": "order-manage",
+    "file": "assets/icons/order-manage-linear.svg"
+  },
+  {
+    "id": "3424:8697",
+    "name": "类型=线性, icon名称=订阅",
+    "type": "linear",
+    "slug": "subscribe",
+    "file": "assets/icons/subscribe-linear.svg"
+  },
+  {
+    "id": "3424:8701",
+    "name": "类型=线性, icon名称=客户02",
+    "type": "linear",
+    "slug": "customer-02",
+    "file": "assets/icons/customer-02-linear.svg"
+  },
+  {
+    "id": "3424:8705",
+    "name": "类型=线性, icon名称=伙伴01",
+    "type": "linear",
+    "slug": "partner-01",
+    "file": "assets/icons/partner-01-linear.svg"
+  },
+  {
+    "id": "3424:8709",
+    "name": "类型=线性, icon名称=下架",
+    "type": "linear",
+    "slug": "off-shelf",
+    "file": "assets/icons/off-shelf-linear.svg"
+  },
+  {
+    "id": "3424:8713",
+    "name": "类型=线性, icon名称=上架",
+    "type": "linear",
+    "slug": "on-shelf",
+    "file": "assets/icons/on-shelf-linear.svg"
+  },
+  {
+    "id": "3424:8717",
+    "name": "类型=面性, icon名称=下架",
+    "type": "filled",
+    "slug": "off-shelf",
+    "file": "assets/icons/off-shelf-filled.svg"
+  },
+  {
+    "id": "3424:8721",
+    "name": "类型=面性, icon名称=上架",
+    "type": "filled",
+    "slug": "on-shelf",
+    "file": "assets/icons/on-shelf-filled.svg"
+  },
+  {
+    "id": "3424:8725",
+    "name": "类型=面性, icon名称=伙伴01",
+    "type": "filled",
+    "slug": "partner-01",
+    "file": "assets/icons/partner-01-filled.svg"
+  },
+  {
+    "id": "3424:8729",
+    "name": "类型=线性, icon名称=费用",
+    "type": "linear",
+    "slug": "fee",
+    "file": "assets/icons/fee-linear.svg"
+  },
+  {
+    "id": "3424:8733",
+    "name": "类型=面性, icon名称=费用",
+    "type": "filled",
+    "slug": "fee",
+    "file": "assets/icons/fee-filled.svg"
+  },
+  {
+    "id": "3424:8737",
+    "name": "类型=面性, icon名称=客户02",
+    "type": "filled",
+    "slug": "customer-02",
+    "file": "assets/icons/customer-02-filled.svg"
+  },
+  {
+    "id": "3424:8741",
+    "name": "类型=面性, icon名称=订阅",
+    "type": "filled",
+    "slug": "subscribe",
+    "file": "assets/icons/subscribe-filled.svg"
+  },
+  {
+    "id": "3424:8745",
+    "name": "类型=面性, icon名称=订单管理",
+    "type": "filled",
+    "slug": "order-manage",
+    "file": "assets/icons/order-manage-filled.svg"
+  },
+  {
+    "id": "3424:8749",
+    "name": "类型=面性, icon名称=套餐管理",
+    "type": "filled",
+    "slug": "package-manage",
+    "file": "assets/icons/package-manage-filled.svg"
+  },
+  {
+    "id": "3424:8753",
+    "name": "类型=面性, icon名称=产品配置",
+    "type": "filled",
+    "slug": "product-config",
+    "file": "assets/icons/product-config-filled.svg"
+  },
+  {
+    "id": "3424:8757",
+    "name": "类型=面性, icon名称=客户01",
+    "type": "filled",
+    "slug": "customer-01",
+    "file": "assets/icons/customer-01-filled.svg"
+  },
+  {
+    "id": "3424:8761",
+    "name": "类型=线性, icon名称=不可见",
+    "type": "linear",
+    "slug": "invisible",
+    "file": "assets/icons/invisible-linear.svg"
+  },
+  {
+    "id": "3424:8765",
+    "name": "类型=线性, icon名称=更多",
+    "type": "linear",
+    "slug": "more",
+    "file": "assets/icons/more-linear.svg"
+  },
+  {
+    "id": "3424:8769",
+    "name": "类型=线性, icon名称=设置",
+    "type": "linear",
+    "slug": "settings",
+    "file": "assets/icons/settings-linear.svg"
+  },
+  {
+    "id": "3424:8773",
+    "name": "类型=线性, icon名称=预览",
+    "type": "linear",
+    "slug": "preview",
+    "file": "assets/icons/preview-linear.svg"
+  },
+  {
+    "id": "3424:8777",
+    "name": "类型=面性, icon名称=新增",
+    "type": "filled",
+    "slug": "add",
+    "file": "assets/icons/add-filled.svg"
+  },
+  {
+    "id": "3424:8781",
+    "name": "类型=面性, icon名称=箭头-下",
+    "type": "filled",
+    "slug": "arrow-down",
+    "file": "assets/icons/arrow-down-filled.svg"
+  },
+  {
+    "id": "3424:8785",
+    "name": "类型=面性, icon名称=箭头-左",
+    "type": "filled",
+    "slug": "arrow-left",
+    "file": "assets/icons/arrow-left-filled.svg"
+  },
+  {
+    "id": "3424:8789",
+    "name": "类型=面性, icon名称=箭头-右",
+    "type": "filled",
+    "slug": "arrow-right",
+    "file": "assets/icons/arrow-right-filled.svg"
+  },
+  {
+    "id": "3424:8793",
+    "name": "类型=面性, icon名称=箭头-上",
+    "type": "filled",
+    "slug": "arrow-up",
+    "file": "assets/icons/arrow-up-filled.svg"
+  },
+  {
+    "id": "3424:8797",
+    "name": "类型=面性, icon名称=复制",
+    "type": "filled",
+    "slug": "copy",
+    "file": "assets/icons/copy-filled.svg"
+  },
+  {
+    "id": "3424:8801",
+    "name": "类型=面性, icon名称=删除",
+    "type": "filled",
+    "slug": "delete",
+    "file": "assets/icons/delete-filled.svg"
+  },
+  {
+    "id": "3424:8805",
+    "name": "类型=面性, icon名称=下载01",
+    "type": "filled",
+    "slug": "download-01",
+    "file": "assets/icons/download-01-filled.svg"
+  },
+  {
+    "id": "3424:8809",
+    "name": "类型=面性, icon名称=预览",
+    "type": "filled",
+    "slug": "preview",
+    "file": "assets/icons/preview-filled.svg"
+  },
+  {
+    "id": "3424:8813",
+    "name": "类型=面性, icon名称=不可见",
+    "type": "filled",
+    "slug": "invisible",
+    "file": "assets/icons/invisible-filled.svg"
+  },
+  {
+    "id": "3424:8817",
+    "name": "类型=面性, icon名称=筛选",
+    "type": "filled",
+    "slug": "filter",
+    "file": "assets/icons/filter-filled.svg"
+  },
+  {
+    "id": "3424:8821",
+    "name": "类型=面性, icon名称=提示",
+    "type": "filled",
+    "slug": "info",
+    "file": "assets/icons/info-filled.svg"
+  },
+  {
+    "id": "3424:8825",
+    "name": "类型=面性, icon名称=加载中",
+    "type": "filled",
+    "slug": "loading",
+    "file": "assets/icons/loading-filled.svg"
+  },
+  {
+    "id": "3424:8829",
+    "name": "类型=面性, icon名称=收起",
+    "type": "filled",
+    "slug": "collapse",
+    "file": "assets/icons/collapse-filled.svg"
+  },
+  {
+    "id": "3424:8833",
+    "name": "类型=面性, icon名称=展开",
+    "type": "filled",
+    "slug": "expand",
+    "file": "assets/icons/expand-filled.svg"
+  },
+  {
+    "id": "3424:8837",
+    "name": "类型=面性, icon名称=更多",
+    "type": "filled",
+    "slug": "more",
+    "file": "assets/icons/more-filled.svg"
+  },
+  {
+    "id": "3424:8841",
+    "name": "类型=面性, icon名称=疑问",
+    "type": "filled",
+    "slug": "question",
+    "file": "assets/icons/question-filled.svg"
+  },
+  {
+    "id": "3424:8847",
+    "name": "类型=面性, icon名称=搜索",
+    "type": "filled",
+    "slug": "search",
+    "file": "assets/icons/search-filled.svg"
+  },
+  {
+    "id": "3424:8851",
+    "name": "类型=面性, icon名称=设置",
+    "type": "filled",
+    "slug": "settings",
+    "file": "assets/icons/settings-filled.svg"
+  },
+  {
+    "id": "3424:8855",
+    "name": "类型=面性, icon名称=上传01",
+    "type": "filled",
+    "slug": "upload-01",
+    "file": "assets/icons/upload-01-filled.svg"
+  },
+  {
+    "id": "3424:8859",
+    "name": "类型=线性, icon名称=疑问",
+    "type": "linear",
+    "slug": "question",
+    "file": "assets/icons/question-linear.svg"
+  },
+  {
+    "id": "3424:8863",
+    "name": "类型=面性, icon名称=警告",
+    "type": "filled",
+    "slug": "warning",
+    "file": "assets/icons/warning-filled.svg"
+  },
+  {
+    "id": "3424:8867",
+    "name": "类型=面性, icon名称=日期",
+    "type": "filled",
+    "slug": "date",
+    "file": "assets/icons/date-filled.svg"
+  },
+  {
+    "id": "3424:8871",
+    "name": "类型=线性, icon名称=日期",
+    "type": "linear",
+    "slug": "date",
+    "file": "assets/icons/date-linear.svg"
+  },
+  {
+    "id": "3424:8875",
+    "name": "类型=面性, icon名称=排序",
+    "type": "filled",
+    "slug": "sort",
+    "file": "assets/icons/sort-filled.svg"
+  },
+  {
+    "id": "3424:8880",
+    "name": "类型=线性, icon名称=排序",
+    "type": "linear",
+    "slug": "sort",
+    "file": "assets/icons/sort-linear.svg"
+  },
+  {
+    "id": "3424:8885",
+    "name": "类型=线性, icon名称=关闭",
+    "type": "linear",
+    "slug": "close",
+    "file": "assets/icons/close-linear.svg"
+  },
+  {
+    "id": "3424:8887",
+    "name": "类型=面性, icon名称=关闭",
+    "type": "filled",
+    "slug": "close",
+    "file": "assets/icons/close-filled.svg"
+  },
+  {
+    "id": "3424:8889",
+    "name": "类型=线性, icon名称=成功",
+    "type": "linear",
+    "slug": "success",
+    "file": "assets/icons/success-linear.svg"
+  },
+  {
+    "id": "3424:8891",
+    "name": "类型=面性, icon名称=成功",
+    "type": "filled",
+    "slug": "success",
+    "file": "assets/icons/success-filled.svg"
+  },
+  {
+    "id": "3424:8894",
+    "name": "类型=线性, icon名称=菜单",
+    "type": "linear",
+    "slug": "menu",
+    "file": "assets/icons/menu-linear.svg"
+  },
+  {
+    "id": "3424:8896",
+    "name": "类型=面性, icon名称=菜单",
+    "type": "filled",
+    "slug": "menu",
+    "file": "assets/icons/menu-filled.svg"
+  },
+  {
+    "id": "3424:8898",
+    "name": "类型=线性, icon名称=动态",
+    "type": "linear",
+    "slug": "activity",
+    "file": "assets/icons/activity-linear.svg"
+  },
+  {
+    "id": "3424:8901",
+    "name": "类型=面性, icon名称=动态",
+    "type": "filled",
+    "slug": "activity",
+    "file": "assets/icons/activity-filled.svg"
+  },
+  {
+    "id": "3424:8904",
+    "name": "类型=线性, icon名称=首页",
+    "type": "linear",
+    "slug": "home",
+    "file": "assets/icons/home-linear.svg"
+  },
+  {
+    "id": "3424:8907",
+    "name": "类型=面性, icon名称=首页",
+    "type": "filled",
+    "slug": "home",
+    "file": "assets/icons/home-filled.svg"
+  },
+  {
+    "id": "3424:8910",
+    "name": "类型=线性, icon名称=附件",
+    "type": "linear",
+    "slug": "attachment",
+    "file": "assets/icons/attachment-linear.svg"
+  },
+  {
+    "id": "3424:8914",
+    "name": "类型=面性, icon名称=附件",
+    "type": "filled",
+    "slug": "attachment",
+    "file": "assets/icons/attachment-filled.svg"
+  },
+  {
+    "id": "3424:8918",
+    "name": "类型=面性, icon名称=应用",
+    "type": "filled",
+    "slug": "app",
+    "file": "assets/icons/app-filled.svg"
+  },
+  {
+    "id": "3424:8920",
+    "name": "类型=面性, icon名称=数据脉冲",
+    "type": "filled",
+    "slug": "data-pulse",
+    "file": "assets/icons/data-pulse-filled.svg"
+  },
+  {
+    "id": "3424:8922",
+    "name": "类型=线性, icon名称=数据脉冲",
+    "type": "linear",
+    "slug": "data-pulse",
+    "file": "assets/icons/data-pulse-linear.svg"
+  },
+  {
+    "id": "3424:8924",
+    "name": "类型=线性, icon名称=火爆",
+    "type": "linear",
+    "slug": "hot",
+    "file": "assets/icons/hot-linear.svg"
+  },
+  {
+    "id": "3424:8926",
+    "name": "类型=面性, icon名称=火爆",
+    "type": "filled",
+    "slug": "hot",
+    "file": "assets/icons/hot-filled.svg"
+  },
+  {
+    "id": "3424:8928",
+    "name": "类型=面性, icon名称=合作伙伴",
+    "type": "filled",
+    "slug": "partners",
+    "file": "assets/icons/partners-filled.svg"
+  },
+  {
+    "id": "3424:8930",
+    "name": "类型=线性, icon名称=合作伙伴",
+    "type": "linear",
+    "slug": "partners",
+    "file": "assets/icons/partners-linear.svg"
+  },
+  {
+    "id": "3424:8932",
+    "name": "类型=线性, icon名称=应用",
+    "type": "linear",
+    "slug": "app",
+    "file": "assets/icons/app-linear.svg"
+  },
+  {
+    "id": "3424:8934",
+    "name": "类型=线性, icon名称=购买",
+    "type": "linear",
+    "slug": "purchase",
+    "file": "assets/icons/purchase-linear.svg"
+  },
+  {
+    "id": "3424:8936",
+    "name": "类型=线性, icon名称=签署",
+    "type": "linear",
+    "slug": "sign",
+    "file": "assets/icons/sign-linear.svg"
+  },
+  {
+    "id": "3424:8938",
+    "name": "类型=线性, icon名称=切换",
+    "type": "linear",
+    "slug": "switch",
+    "file": "assets/icons/switch-linear.svg"
+  },
+  {
+    "id": "3424:8942",
+    "name": "类型=面性, icon名称=切换",
+    "type": "filled",
+    "slug": "switch",
+    "file": "assets/icons/switch-filled.svg"
+  },
+  {
+    "id": "3424:8949",
+    "name": "类型=面性, icon名称=签署",
+    "type": "filled",
+    "slug": "sign",
+    "file": "assets/icons/sign-filled.svg"
+  },
+  {
+    "id": "3424:8953",
+    "name": "类型=面性, icon名称=购买",
+    "type": "filled",
+    "slug": "purchase",
+    "file": "assets/icons/purchase-filled.svg"
+  },
+  {
+    "id": "3424:8955",
+    "name": "类型=线性, icon名称=设置2",
+    "type": "linear",
+    "slug": "settings-2",
+    "file": "assets/icons/settings-2-linear.svg"
+  },
+  {
+    "id": "3424:8959",
+    "name": "类型=面性, icon名称=设置2",
+    "type": "filled",
+    "slug": "settings-2",
+    "file": "assets/icons/settings-2-filled.svg"
+  },
+  {
+    "id": "3424:8963",
+    "name": "类型=线性, icon名称=我收到的",
+    "type": "linear",
+    "slug": "inbox",
+    "file": "assets/icons/inbox-linear.svg"
+  },
+  {
+    "id": "3424:8967",
+    "name": "类型=面性, icon名称=我收到的",
+    "type": "filled",
+    "slug": "inbox",
+    "file": "assets/icons/inbox-filled.svg"
+  },
+  {
+    "id": "3424:8971",
+    "name": "类型=线性, icon名称=编辑",
+    "type": "linear",
+    "slug": "edit",
+    "file": "assets/icons/edit-linear.svg"
+  },
+  {
+    "id": "3424:8975",
+    "name": "类型=面性, icon名称=编辑",
+    "type": "filled",
+    "slug": "edit",
+    "file": "assets/icons/edit-filled.svg"
+  },
+  {
+    "id": "3424:8979",
+    "name": "类型=线性, icon名称=顺序设置",
+    "type": "linear",
+    "slug": "order-settings",
+    "file": "assets/icons/order-settings-linear.svg"
+  },
+  {
+    "id": "3424:8987",
+    "name": "类型=面性, icon名称=顺序设置",
+    "type": "filled",
+    "slug": "order-settings",
+    "file": "assets/icons/order-settings-filled.svg"
+  },
+  {
+    "id": "3424:8995",
+    "name": "类型=线性, icon名称=打印",
+    "type": "linear",
+    "slug": "print",
+    "file": "assets/icons/print-linear.svg"
+  },
+  {
+    "id": "3424:8999",
+    "name": "类型=面性, icon名称=打印",
+    "type": "filled",
+    "slug": "print",
+    "file": "assets/icons/print-filled.svg"
+  },
+  {
+    "id": "3424:9003",
+    "name": "类型=线性, icon名称=全屏",
+    "type": "linear",
+    "slug": "fullscreen",
+    "file": "assets/icons/fullscreen-linear.svg"
+  },
+  {
+    "id": "3424:9007",
+    "name": "类型=面性, icon名称=全屏",
+    "type": "filled",
+    "slug": "fullscreen",
+    "file": "assets/icons/fullscreen-filled.svg"
+  },
+  {
+    "id": "3424:9011",
+    "name": "类型=线性, icon名称=退出全屏",
+    "type": "linear",
+    "slug": "exit-fullscreen",
+    "file": "assets/icons/exit-fullscreen-linear.svg"
+  },
+  {
+    "id": "3424:9015",
+    "name": "类型=面性, icon名称=退出全屏",
+    "type": "filled",
+    "slug": "exit-fullscreen",
+    "file": "assets/icons/exit-fullscreen-filled.svg"
+  },
+  {
+    "id": "3424:9019",
+    "name": "类型=线性, icon名称=二维码",
+    "type": "linear",
+    "slug": "qrcode",
+    "file": "assets/icons/qrcode-linear.svg"
+  },
+  {
+    "id": "3424:9023",
+    "name": "类型=面性, icon名称=二维码",
+    "type": "filled",
+    "slug": "qrcode",
+    "file": "assets/icons/qrcode-filled.svg"
+  },
+  {
+    "id": "3424:9027",
+    "name": "类型=面性, icon名称=钥匙",
+    "type": "filled",
+    "slug": "key",
+    "file": "assets/icons/key-filled.svg"
+  },
+  {
+    "id": "3424:9031",
+    "name": "类型=线性, icon名称=钥匙",
+    "type": "linear",
+    "slug": "key",
+    "file": "assets/icons/key-linear.svg"
+  },
+  {
+    "id": "3424:9035",
+    "name": "类型=线性, icon名称=垃圾桶",
+    "type": "linear",
+    "slug": "trash",
+    "file": "assets/icons/trash-linear.svg"
+  },
+  {
+    "id": "3424:9037",
+    "name": "类型=面性, icon名称=垃圾桶",
+    "type": "filled",
+    "slug": "trash",
+    "file": "assets/icons/trash-filled.svg"
+  },
+  {
+    "id": "3424:9041",
+    "name": "类型=线性, icon名称=图片",
+    "type": "linear",
+    "slug": "image",
+    "file": "assets/icons/image-linear.svg"
+  },
+  {
+    "id": "3424:9045",
+    "name": "类型=面性, icon名称=图片",
+    "type": "filled",
+    "slug": "image",
+    "file": "assets/icons/image-filled.svg"
+  },
+  {
+    "id": "3424:9049",
+    "name": "类型=线性, icon名称=保存",
+    "type": "linear",
+    "slug": "save",
+    "file": "assets/icons/save-linear.svg"
+  },
+  {
+    "id": "3424:9053",
+    "name": "类型=面性, icon名称=保存",
+    "type": "filled",
+    "slug": "save",
+    "file": "assets/icons/save-filled.svg"
+  },
+  {
+    "id": "3424:9057",
+    "name": "类型=线性, icon名称=撤回",
+    "type": "linear",
+    "slug": "undo",
+    "file": "assets/icons/undo-linear.svg"
+  },
+  {
+    "id": "3424:9059",
+    "name": "类型=面性, icon名称=撤回",
+    "type": "filled",
+    "slug": "undo",
+    "file": "assets/icons/undo-filled.svg"
+  },
+  {
+    "id": "3424:9063",
+    "name": "类型=线性, icon名称=拒绝",
+    "type": "linear",
+    "slug": "reject",
+    "file": "assets/icons/reject-linear.svg"
+  },
+  {
+    "id": "3424:9065",
+    "name": "类型=面性, icon名称=拒绝",
+    "type": "filled",
+    "slug": "reject",
+    "file": "assets/icons/reject-filled.svg"
+  },
+  {
+    "id": "3424:9069",
+    "name": "类型=线性, icon名称=隐藏预览",
+    "type": "linear",
+    "slug": "hide-preview",
+    "file": "assets/icons/hide-preview-linear.svg"
+  },
+  {
+    "id": "3424:9071",
+    "name": "类型=面性, icon名称=隐藏预览",
+    "type": "filled",
+    "slug": "hide-preview",
+    "file": "assets/icons/hide-preview-filled.svg"
+  },
+  {
+    "id": "3424:9075",
+    "name": "类型=线性, icon名称=安全",
+    "type": "linear",
+    "slug": "security",
+    "file": "assets/icons/security-linear.svg"
+  },
+  {
+    "id": "3424:9077",
+    "name": "类型=面性, icon名称=安全",
+    "type": "filled",
+    "slug": "security",
+    "file": "assets/icons/security-filled.svg"
+  },
+  {
+    "id": "3424:9081",
+    "name": "类型=线性, icon名称=加入",
+    "type": "linear",
+    "slug": "join",
+    "file": "assets/icons/join-linear.svg"
+  },
+  {
+    "id": "3424:9085",
+    "name": "类型=面性, icon名称=加入",
+    "type": "filled",
+    "slug": "join",
+    "file": "assets/icons/join-filled.svg"
+  },
+  {
+    "id": "3424:9089",
+    "name": "类型=线性, icon名称=待办",
+    "type": "linear",
+    "slug": "todo",
+    "file": "assets/icons/todo-linear.svg"
+  },
+  {
+    "id": "3424:9091",
+    "name": "类型=线性, icon名称=扫码01",
+    "type": "linear",
+    "slug": "scan-01",
+    "file": "assets/icons/scan-01-linear.svg"
+  },
+  {
+    "id": "3424:9094",
+    "name": "类型=面性, icon名称=扫码01",
+    "type": "filled",
+    "slug": "scan-01",
+    "file": "assets/icons/scan-01-filled.svg"
+  },
+  {
+    "id": "3424:9097",
+    "name": "类型=面性, icon名称=待办",
+    "type": "filled",
+    "slug": "todo",
+    "file": "assets/icons/todo-filled.svg"
+  },
+  {
+    "id": "3424:9101",
+    "name": "类型=线性, icon名称=发送",
+    "type": "linear",
+    "slug": "send",
+    "file": "assets/icons/send-linear.svg"
+  },
+  {
+    "id": "3424:9107",
+    "name": "类型=面性, icon名称=发送",
+    "type": "filled",
+    "slug": "send",
+    "file": "assets/icons/send-filled.svg"
+  },
+  {
+    "id": "3424:9111",
+    "name": "类型=面性, icon名称=电脑",
+    "type": "filled",
+    "slug": "computer",
+    "file": "assets/icons/computer-filled.svg"
+  },
+  {
+    "id": "3424:9115",
+    "name": "类型=线性, icon名称=电脑",
+    "type": "linear",
+    "slug": "computer",
+    "file": "assets/icons/computer-linear.svg"
+  },
+  {
+    "id": "3424:9119",
+    "name": "类型=线性, icon名称=添加成员",
+    "type": "linear",
+    "slug": "add-member",
+    "file": "assets/icons/add-member-linear.svg"
+  },
+  {
+    "id": "3424:9123",
+    "name": "类型=面性, icon名称=添加成员",
+    "type": "filled",
+    "slug": "add-member",
+    "file": "assets/icons/add-member-filled.svg"
+  },
+  {
+    "id": "3424:9127",
+    "name": "类型=线性, icon名称=成员管理",
+    "type": "linear",
+    "slug": "member-manage",
+    "file": "assets/icons/member-manage-linear.svg"
+  },
+  {
+    "id": "3424:9131",
+    "name": "类型=面性, icon名称=成员管理",
+    "type": "filled",
+    "slug": "member-manage",
+    "file": "assets/icons/member-manage-filled.svg"
+  }
+]

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>签署列表 — NotaSign</title>
+  <link rel="stylesheet" href="../notasign-design-system.css" />
+  <link rel="stylesheet" href="signing-list.css" />
+  <script src="../components/i18n.js" defer></script>
+  <script src="../components/topbar.js" defer></script>
+  <script src="../components/signing-sidebar.js" defer></script>
+  <script src="../components/tabs.js" defer></script>
+  <script src="../components/input.js" defer></script>
+  <script src="../components/select.js" defer></script>
+  <script src="../components/pagination.js" defer></script>
+  <script src="../components/signing-table.js" defer></script>
+  <script src="../components/signing-footer.js" defer></script>
+  <script src="signing-list.js" defer></script>
+</head>
+<body class="ns-app">
+  <div data-ns-business-topbar data-active-tab="signing" data-asset-base="assets/signing-list"></div>
+
+  <div class="ns-app__body">
+    <div data-ns-business-signing-sidebar data-active-item="all" data-asset-base="assets/signing-list"></div>
+
+    <main class="ns-app__content" id="main">
+      <header class="ns-app__content-head">
+        <h1 class="ns-app__page-title ns-i18n-ellipsis" data-i18n="page.allTasks">所有任务</h1>
+
+        <form class="ns-app__filters" role="search" aria-label="列表筛选">
+          <div class="ns-input--with-icon ns-input--search">
+            <span class="ns-input__prefix" aria-hidden="true">
+              <img src="assets/signing-list/icon-search.svg" width="20" height="20" alt="" />
+            </span>
+            <input class="ns-input" type="search" placeholder="搜索主题或签署方" aria-label="搜索主题或签署方" data-i18n-placeholder="filter.search" data-i18n-label="filter.search" data-search-input />
+            <button class="ns-input__clear" type="button" aria-label="清空搜索内容" data-search-clear hidden>
+              <img src="assets/signing-list/icon-search-clear.svg" width="16" height="16" alt="" />
+            </button>
+          </div>
+          <div class="ns-app__select-wrap ns-app__select-wrap--time">
+            <div class="ns-select" data-ns-select data-value="last-6-months" data-default-value="last-6-months" aria-label="发起时间">
+              <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="ns-select__value" data-i18n="filter.time.last6">最近6个月发起</span>
+                <img class="ns-select__chevron" src="assets/signing-list/icon-select-chevron.svg" width="16" height="16" alt="" />
+              </button>
+              <div class="ns-select__menu" role="listbox" hidden>
+                <button type="button" class="ns-select__option is-selected" role="option" data-value="last-6-months" aria-selected="true" data-i18n="filter.time.last6">最近6个月发起</button>
+                <button type="button" class="ns-select__option" role="option" data-value="last-3-months" aria-selected="false" data-i18n="filter.time.last3">最近3个月发起</button>
+                <button type="button" class="ns-select__option" role="option" data-value="last-1-month" aria-selected="false" data-i18n="filter.time.last1">最近1个月发起</button>
+              </div>
+            </div>
+          </div>
+          <div class="ns-app__select-wrap ns-app__select-wrap--status">
+            <div class="ns-select" data-ns-select data-placeholder="请选择状态" data-placeholder-key="filter.status.placeholder" aria-label="状态">
+              <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="ns-select__value" data-i18n="filter.status.placeholder">请选择状态</span>
+                <img class="ns-select__chevron" src="assets/signing-list/icon-select-chevron.svg" width="16" height="16" alt="" />
+              </button>
+              <div class="ns-select__menu" role="listbox" hidden>
+                <button type="button" class="ns-select__option" role="option" data-value="filling" aria-selected="false" data-i18n="status.filling">填写中</button>
+                <button type="button" class="ns-select__option" role="option" data-value="signing" aria-selected="false" data-i18n="status.signing">签署中</button>
+                <button type="button" class="ns-select__option" role="option" data-value="completed" aria-selected="false" data-i18n="status.completed">已完成</button>
+              </div>
+            </div>
+          </div>
+          <button type="reset" class="ns-btn ns-btn--filter-reset" data-i18n="filter.reset">重置</button>
+        </form>
+      </header>
+
+      <div data-ns-business-signing-table data-asset-base="assets/signing-list"></div>
+    </main>
+  </div>
+</body>
+</html>

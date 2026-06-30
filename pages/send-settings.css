@@ -1,0 +1,239 @@
+/**
+ * 发送设置典型页面 — 布局与页面级样式（Figma node 23484:781）
+ * 组件样式见 ../notasign-design-system.css
+ */
+
+html {
+  height: 100%;
+}
+
+html,
+body.ns-app {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.ns-app {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--ns-color-bg-page);
+  color: var(--ns-color-text-primary);
+}
+
+[data-ns-business-topbar] {
+  position: relative;
+  z-index: 50;
+  flex: 0 0 var(--ns-topbar-height);
+  min-height: var(--ns-topbar-height);
+}
+
+.ns-app__body {
+  display: flex;
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ns-app__body > [data-ns-business-management-sidebar] {
+  position: relative;
+  z-index: 40;
+  flex: 0 0 var(--ns-sidebar-width);
+  width: var(--ns-sidebar-width);
+  min-height: 0;
+  display: flex;
+}
+
+.ns-app__body > [data-ns-business-management-sidebar] .ns-app__sidebar {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: var(--ns-spacing-12) var(--ns-spacing-12) var(--ns-spacing-24);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ns-send-settings-page {
+  --ns-send-settings-select-width: 425px;
+
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  background-color: var(--ns-color-bg-page);
+}
+
+.ns-send-settings-page__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 var(--ns-spacing-24);
+}
+
+.ns-send-settings-page__head {
+  flex: 0 0 auto;
+  border-bottom: var(--ns-border-width) solid var(--ns-color-border);
+}
+
+.ns-send-settings-page__title {
+  margin: 0;
+  padding: var(--ns-spacing-24) 0;
+  font-size: var(--ns-font-size-lg);
+  font-weight: var(--ns-font-weight-medium);
+  line-height: var(--ns-line-height-md-tight);
+  letter-spacing: var(--ns-letter-spacing-sidebar);
+  color: var(--ns-color-text-primary);
+}
+
+.ns-send-settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-spacing-8);
+  padding-bottom: var(--ns-spacing-24);
+}
+
+.ns-send-settings-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-spacing-16);
+  padding: var(--ns-spacing-24) 0 var(--ns-spacing-16);
+  border-top: var(--ns-border-width) solid var(--ns-color-border);
+}
+
+.ns-send-settings-form__section:first-child {
+  border-top: none;
+  padding-top: var(--ns-spacing-24);
+}
+
+.ns-send-settings-form__section-title {
+  margin: 0;
+  font-size: var(--ns-font-size-md);
+  font-weight: var(--ns-font-weight-medium);
+  line-height: normal;
+  letter-spacing: var(--ns-letter-spacing-sidebar);
+  color: var(--ns-color-text-primary);
+}
+
+.ns-send-settings-form__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-spacing-24);
+  padding-left: var(--ns-spacing-16);
+}
+
+.ns-send-settings-form__stack--compact {
+  gap: var(--ns-spacing-8);
+}
+
+.ns-send-settings-form__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-spacing-16);
+}
+
+.ns-send-settings-form__check {
+  align-items: center;
+}
+
+.ns-send-settings-form__check span {
+  line-height: var(--ns-line-height-sm);
+  letter-spacing: 0;
+}
+
+.ns-send-settings-form__check-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ns-spacing-8);
+  width: max-content;
+  max-width: 100%;
+}
+
+.ns-send-settings-form__nested {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-spacing-8);
+  padding-left: var(--ns-spacing-24);
+}
+
+.ns-send-settings-form__nested[hidden] {
+  display: none;
+}
+
+.ns-send-settings-form__nested--row {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ns-spacing-12);
+}
+
+.ns-send-settings-form__nested--force-read {
+  gap: var(--ns-spacing-16);
+  padding-left: var(--ns-spacing-40);
+}
+
+.ns-send-settings-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-spacing-8);
+}
+
+.ns-send-settings-form__field-label,
+.ns-send-settings-form__field-text {
+  margin: 0;
+  font-size: var(--ns-font-size-sm);
+  line-height: normal;
+  letter-spacing: var(--ns-letter-spacing-sidebar);
+  color: var(--ns-color-text-secondary);
+}
+
+.ns-send-settings-form__field-text {
+  color: var(--ns-color-text-primary);
+}
+
+.ns-send-settings-form__select-wrap {
+  width: min(100%, var(--ns-send-settings-select-width));
+}
+
+.ns-send-settings-form__select-wrap .ns-select {
+  width: 100%;
+}
+
+.ns-send-settings-form__inline {
+  display: flex;
+  align-items: center;
+  gap: var(--ns-spacing-16);
+}
+
+.ns-send-settings-form__number {
+  flex-shrink: 0;
+}
+
+.ns-send-settings-form__suffix {
+  font-size: var(--ns-font-size-sm);
+  line-height: var(--ns-control-height-lg);
+  letter-spacing: var(--ns-letter-spacing-sidebar);
+  color: var(--ns-color-text-primary);
+}
+
+.ns-send-settings-form__hint {
+  font-size: var(--ns-font-size-sm);
+  line-height: normal;
+  letter-spacing: var(--ns-letter-spacing-sidebar);
+  color: var(--ns-color-text-primary);
+}
+

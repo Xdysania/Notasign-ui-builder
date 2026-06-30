@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>发送设置 — NotaSign</title>
+  <link rel="stylesheet" href="../notasign-design-system.css" />
+  <link rel="stylesheet" href="send-settings.css" />
+  <script src="../components/i18n.js" defer></script>
+  <script src="../components/topbar.js" defer></script>
+  <script src="../components/management-sidebar.js" defer></script>
+  <script src="../components/tabs.js" defer></script>
+  <script src="../components/select.js" defer></script>
+  <script src="../components/input-number.js" defer></script>
+  <script src="send-settings.js" defer></script>
+</head>
+<body class="ns-app">
+  <div data-ns-business-topbar data-active-tab="admin" data-nav-profile="admin" data-asset-base="assets/signing-list"></div>
+
+  <div class="ns-app__body">
+    <div data-ns-business-management-sidebar data-active-item="send-settings" data-asset-base="assets/send-settings"></div>
+
+    <main class="ns-app__content ns-send-settings-page" id="main">
+      <div class="ns-send-settings-page__scroll">
+        <header class="ns-send-settings-page__head">
+          <h1 class="ns-send-settings-page__title ns-i18n-ellipsis" data-i18n="sendSettings.title">发送设置</h1>
+        </header>
+
+        <form class="ns-send-settings-form" id="send-settings-form" aria-label="发送设置表单">
+          <section class="ns-send-settings-form__section" aria-labelledby="send-settings-controls-title">
+            <h2 class="ns-send-settings-form__section-title" id="send-settings-controls-title" data-i18n="sendSettings.section.controls">控件设置</h2>
+
+            <div class="ns-send-settings-form__stack">
+              <div class="ns-send-settings-form__block">
+                <label class="ns-check ns-send-settings-form__check">
+                  <input class="ns-check__input" type="checkbox" name="enable-seal" checked />
+                  <span data-i18n="sendSettings.enableSeal">启用图章控件</span>
+                </label>
+
+                <div class="ns-send-settings-form__nested">
+                  <div class="ns-send-settings-form__field">
+                    <p class="ns-send-settings-form__field-label" data-i18n="sendSettings.sealScope">默认使用范围</p>
+                    <div class="ns-send-settings-form__select-wrap">
+                      <div class="ns-select" data-ns-select data-value="unlimited" data-default-value="unlimited" aria-label="默认使用范围" data-i18n-label="sendSettings.sealScope">
+                        <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                          <span class="ns-select__value" data-i18n="sendSettings.sealScope.unlimited">不限制</span>
+                          <img class="ns-select__chevron" src="assets/signing-list/icon-select-chevron.svg" width="16" height="16" alt="" />
+                        </button>
+                        <div class="ns-select__menu" role="listbox" hidden>
+                          <button type="button" class="ns-select__option is-selected" role="option" data-value="unlimited" aria-selected="true" data-i18n="sendSettings.sealScope.unlimited">不限制</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ns-send-settings-form__field">
+                    <p class="ns-send-settings-form__field-label" data-i18n="sendSettings.sealSizeRule">默认尺寸规则</p>
+                    <div class="ns-send-settings-form__select-wrap">
+                      <div class="ns-select" data-ns-select data-value="by-control" data-default-value="by-control" aria-label="默认尺寸规则" data-i18n-label="sendSettings.sealSizeRule">
+                        <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                          <span class="ns-select__value" data-i18n="sendSettings.sealSizeRule.byControl">按控件设置大小展示</span>
+                          <img class="ns-select__chevron" src="assets/signing-list/icon-select-chevron.svg" width="16" height="16" alt="" />
+                        </button>
+                        <div class="ns-select__menu" role="listbox" hidden>
+                          <button type="button" class="ns-select__option is-selected" role="option" data-value="by-control" aria-selected="true" data-i18n="sendSettings.sealSizeRule.byControl">按控件设置大小展示</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ns-send-settings-form__block">
+                <label class="ns-check ns-send-settings-form__check">
+                  <input class="ns-check__input" type="checkbox" name="enable-attachment" checked />
+                  <span data-i18n="sendSettings.enableAttachment">启用附件控件</span>
+                </label>
+
+                <div class="ns-send-settings-form__nested">
+                  <label class="ns-check ns-send-settings-form__check">
+                    <input class="ns-check__input" type="checkbox" name="attachment-multi" checked />
+                    <span data-i18n="sendSettings.attachmentMulti">默认允许签署人在一个附件控件处，添加多个附件</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="ns-send-settings-form__check-row">
+                <label class="ns-check ns-send-settings-form__check">
+                  <input class="ns-check__input" type="checkbox" name="enable-e-seal" checked />
+                  <span data-i18n="sendSettings.enableESeal">启用电子印章</span>
+                </label>
+                <span class="ns-help-tip">
+                  <button type="button" class="ns-help-tip__trigger" aria-describedby="send-settings-e-seal-tip" aria-label="说明" data-i18n-label="sendSettings.info">
+                    <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                  </button>
+                  <span class="ns-help-tip__bubble" id="send-settings-e-seal-tip" role="tooltip" data-i18n="sendSettings.eSealTip">允许使用企业电子印章对信封文档进行签章</span>
+                </span>
+              </div>
+
+              <div class="ns-send-settings-form__block">
+                <div class="ns-send-settings-form__check-row">
+                  <label class="ns-check ns-send-settings-form__check">
+                    <input class="ns-check__input" type="checkbox" name="enable-e-meterai" />
+                    <span data-i18n="sendSettings.enableEMeterai">启用印尼电子印花税 （e-Meterai）</span>
+                  </label>
+                  <span class="ns-help-tip">
+                    <button type="button" class="ns-help-tip__trigger" aria-describedby="send-settings-emeterai-tip" aria-label="说明" data-i18n-label="sendSettings.info">
+                      <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                    </button>
+                    <span class="ns-help-tip__bubble" id="send-settings-emeterai-tip" role="tooltip" data-i18n="sendSettings.eMeteraiTip">开启后可在签署流程中使用印尼电子印花税功能</span>
+                  </span>
+                </div>
+
+                <div class="ns-send-settings-form__nested ns-send-settings-form__nested--row">
+                  <button type="button" class="ns-btn ns-btn--md ns-btn--brand-soft" data-i18n="sendSettings.configureStamp">配置印花税账号</button>
+                  <span class="ns-send-settings-form__hint" data-i18n="sendSettings.boundAccounts">已绑定账号2个</span>
+                </div>
+              </div>
+
+              <label class="ns-check ns-send-settings-form__check">
+                <input class="ns-check__input" type="checkbox" name="enable-cross-page" checked />
+                <span data-i18n="sendSettings.enableCrossPage">启用骑缝章</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="ns-send-settings-form__section" aria-labelledby="send-settings-envelope-title">
+            <h2 class="ns-send-settings-form__section-title" id="send-settings-envelope-title" data-i18n="sendSettings.section.envelope">信封设置</h2>
+
+            <div class="ns-send-settings-form__stack">
+              <div class="ns-send-settings-form__field">
+                <p class="ns-send-settings-form__field-text" data-i18n="sendSettings.auditReport">签署完成时，发送的邮件通知附加审计报告。</p>
+                <div class="ns-send-settings-form__select-wrap">
+                  <div class="ns-select" data-ns-select data-value="always" data-default-value="always" aria-label="审计报告附加方式" data-i18n-label="sendSettings.auditReport">
+                    <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                      <span class="ns-select__value" data-i18n="sendSettings.auditAlways">始终附加</span>
+                      <img class="ns-select__chevron" src="assets/signing-list/icon-select-chevron.svg" width="16" height="16" alt="" />
+                    </button>
+                    <div class="ns-select__menu" role="listbox" hidden>
+                      <button type="button" class="ns-select__option is-selected" role="option" data-value="always" aria-selected="true" data-i18n="sendSettings.auditAlways">始终附加</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <label class="ns-check ns-send-settings-form__check">
+                <input class="ns-check__input" type="checkbox" name="merge-files" checked />
+                <span data-i18n="sendSettings.mergeFiles">签署完成时，将多个签署文件（包含审计报告）合并成一个文件（仅限不要求数字签名的信封）。</span>
+              </label>
+
+              <div class="ns-send-settings-form__field">
+                <p class="ns-send-settings-form__field-text" data-i18n="sendSettings.expiryPrefix">信封发出后，收件人必须签署文档的天数限制为</p>
+                <div class="ns-send-settings-form__inline">
+                  <div class="ns-input-number ns-send-settings-form__number">
+                    <input class="ns-input-number__input" type="text" inputmode="numeric" name="expiry-days" value="90" aria-label="签署天数限制" />
+                    <div class="ns-input-number__controls" aria-hidden="false">
+                      <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增加"></button>
+                      <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="减少"></button>
+                    </div>
+                  </div>
+                  <span class="ns-send-settings-form__suffix" data-i18n="sendSettings.days">天</span>
+                </div>
+              </div>
+
+              <div class="ns-send-settings-form__field">
+                <p class="ns-send-settings-form__field-text" data-i18n="sendSettings.reminderFreq">信封默认提醒频率：</p>
+                <div class="ns-send-settings-form__select-wrap">
+                  <div class="ns-select" data-ns-select data-value="none" data-default-value="none" aria-label="提醒频率" data-i18n-label="sendSettings.reminderFreq">
+                    <button type="button" class="ns-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                      <span class="ns-select__value" data-i18n="sendSettings.reminderNone">无</span>
+                      <img class="ns-select__chevron" src="assets/signing-list/icon-select-chevron.svg" width="16" height="16" alt="" />
+                    </button>
+                    <div class="ns-select__menu" role="listbox" hidden>
+                      <button type="button" class="ns-select__option is-selected" role="option" data-value="none" aria-selected="true" data-i18n="sendSettings.reminderNone">无</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="ns-send-settings-form__section" aria-labelledby="send-settings-force-read-title">
+            <h2 class="ns-send-settings-form__section-title" id="send-settings-force-read-title" data-i18n="sendSettings.section.forceRead">强制阅读</h2>
+
+            <div class="ns-send-settings-form__stack">
+              <div class="ns-send-settings-form__check-row">
+                <label class="ns-check ns-send-settings-form__check">
+                  <input class="ns-check__input" type="checkbox" name="enable-force-read" aria-controls="send-settings-force-read-options" data-force-read-toggle />
+                  <span data-i18n="sendSettings.enableForceRead">启用强制阅读</span>
+                </label>
+                <span class="ns-help-tip">
+                  <button type="button" class="ns-help-tip__trigger" aria-describedby="send-settings-force-read-tip" aria-label="说明" data-i18n-label="sendSettings.info">
+                    <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                  </button>
+                  <span class="ns-help-tip__bubble" id="send-settings-force-read-tip" role="tooltip" data-i18n="sendSettings.forceReadTip">开启后，收件人必须按要求阅读文档后才能继续签署</span>
+                </span>
+              </div>
+
+              <div class="ns-send-settings-form__nested ns-send-settings-form__nested--force-read" id="send-settings-force-read-options" data-force-read-options hidden>
+                <label class="ns-check ns-send-settings-form__check">
+                  <input class="ns-check__input" type="checkbox" name="force-read-last-page" checked />
+                  <span data-i18n="sendSettings.forceReadLastPage">强制阅读到最后一页</span>
+                </label>
+
+                <div class="ns-send-settings-form__block">
+                  <label class="ns-check ns-send-settings-form__check">
+                    <input class="ns-check__input" type="checkbox" name="force-read-fixed-time" checked />
+                    <span data-i18n="sendSettings.forceReadFixedTime">需阅读固定时间</span>
+                  </label>
+
+                  <div class="ns-send-settings-form__inline">
+                    <div class="ns-input-number ns-send-settings-form__number">
+                      <input class="ns-input-number__input" type="text" inputmode="numeric" name="force-read-seconds" value="30" aria-label="强制阅读秒数" />
+                      <div class="ns-input-number__controls" aria-hidden="false">
+                        <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增加"></button>
+                        <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="减少"></button>
+                      </div>
+                    </div>
+                    <span class="ns-send-settings-form__suffix" data-i18n="sendSettings.seconds">秒</span>
+                  </div>
+                </div>
+
+                <div class="ns-send-settings-form__check-row">
+                  <label class="ns-check ns-send-settings-form__check">
+                    <input class="ns-check__input" type="checkbox" name="allow-adjust-force-read" checked />
+                    <span data-i18n="sendSettings.allowAdjustForceRead">允许发起人发起时可调整阅读要求</span>
+                  </label>
+                  <span class="ns-help-tip">
+                    <button type="button" class="ns-help-tip__trigger" aria-describedby="send-settings-force-read-adjust-tip" aria-label="说明" data-i18n-label="sendSettings.info">
+                      <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                    </button>
+                    <span class="ns-help-tip__bubble" id="send-settings-force-read-adjust-tip" role="tooltip" data-i18n="sendSettings.forceReadAdjustTip">发起签署时允许按信封调整强制阅读要求</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="ns-send-settings-form__section" aria-labelledby="send-settings-terms-confirm-title">
+            <h2 class="ns-send-settings-form__section-title" id="send-settings-terms-confirm-title" data-i18n="sendSettings.section.termsConfirm">条款确认弹窗</h2>
+
+            <div class="ns-send-settings-form__stack">
+              <div class="ns-send-settings-form__check-row">
+                <label class="ns-check ns-send-settings-form__check">
+                  <input class="ns-check__input" type="checkbox" name="enable-terms-confirm" checked />
+                  <span data-i18n="sendSettings.enableTermsConfirm">启用条款确认弹窗</span>
+                </label>
+                <span class="ns-help-tip">
+                  <button type="button" class="ns-help-tip__trigger" aria-describedby="send-settings-terms-confirm-tip" aria-label="说明" data-i18n-label="sendSettings.info">
+                    <img src="assets/send-settings/icon-info.svg" width="16" height="16" alt="" />
+                  </button>
+                  <span class="ns-help-tip__bubble" id="send-settings-terms-confirm-tip" role="tooltip" data-i18n="sendSettings.termsConfirmTip">启用后，发起人可在签署人设置中配置提交前需要确认的条款。签署人点击提交时，需勾选确认全部条款后才可继续提交签署。</span>
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section class="ns-send-settings-form__section" aria-labelledby="send-settings-recipient-title">
+            <h2 class="ns-send-settings-form__section-title" id="send-settings-recipient-title" data-i18n="sendSettings.section.recipient">收件人设置</h2>
+
+            <div class="ns-send-settings-form__stack ns-send-settings-form__stack--compact">
+              <label class="ns-check ns-send-settings-form__check">
+                <input class="ns-check__input" type="checkbox" name="sequential-sign" checked />
+                <span data-i18n="sendSettings.sequentialSign">默认有序签署</span>
+              </label>
+
+              <label class="ns-check ns-send-settings-form__check">
+                <input class="ns-check__input" type="checkbox" name="allow-rename" checked />
+                <span data-i18n="sendSettings.allowRename">默认允许核验人更名</span>
+              </label>
+            </div>
+          </section>
+        </form>
+      </div>
+
+      <footer class="ns-fixed-action-footer ns-send-settings-page__footer">
+        <button type="submit" class="ns-btn ns-btn--lg ns-btn--primary" form="send-settings-form" data-i18n="sendSettings.save">保存</button>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

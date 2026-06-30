@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>签署失败 — NotaSign</title>
+<link rel="stylesheet" href="../fpt-design.css"/>
+</head>
+<body>
+<div class="app-wrap"><div class="app">
+<header class="top-h"><div class="top-h-l"><span class="top-h-tt">请将签署控件拖放到文档中</span></div>
+<div class="top-h-r"><div class="sbtn"><button class="sbtn-m" type="button">签 署</button><div class="sbtn-d"></div>
+<button class="sbtn-a" type="button" aria-label="更多选项"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7.5L9 12l4.5-4.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></header>
+<div class="doc"><div class="doc-f2"></div><div class="doc-f1"><div class="doc-in">
+<img class="doc-preview-img" src="../assets/images/doc-preview-pc.png" alt="" width="752" height="780"/>
+</div></div></div>
+<div class="ovl">
+<div class="modal" id="modal-status" role="dialog" aria-modal="true">
+<div class="modal-h"><h2 class="modal-tt">签署失败</h2></div>
+<div class="status-body status-body--exception">
+<div class="exception-page__content">
+<div class="exception-page__illus-wrap">
+<img class="exception-page__illus" src="../assets/images/exception-illus.svg" alt="" width="150" height="150"/>
+</div>
+<h3 class="exception-page__title">签署未成功</h3>
+<div class="exception-page__desc">
+<p>OTP 验证超时。若证书仍有效可重新发起签署授权；若证书已失效需重新申请 FPT 证书。</p>
+</div>
+</div>
+<div class="status-actions">
+<a href="sign-processing.html" class="btn btn-p">重新签署</a>
+<a href="signing.html" class="btn btn-s">返回文档</a>
+</div></div></div></div>
+<footer class="bbar"><div class="bbar-c"><span class="bbar-t2">Copyright © 2013-2026 深圳法大大网络科技有限公司版权所有</span></div></footer>
+</div></div>
+</body>
+</html>

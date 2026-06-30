@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>证书结果查询中 — NotaSign</title>
+<link rel="stylesheet" href="../fpt-design.css"/>
+</head>
+<body>
+<div class="app-wrap"><div class="app">
+<header class="top-h"><div class="top-h-l"><span class="top-h-tt">请将签署控件拖放到文档中</span></div>
+<div class="top-h-r"><div class="sbtn"><button class="sbtn-m" type="button">签 署</button><div class="sbtn-d"></div>
+<button class="sbtn-a" type="button" aria-label="更多选项"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 7.5L9 12l4.5-4.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></header>
+<nav class="lmenu" aria-hidden="true"><div class="lmenu-hd"><span class="lmenu-hd-tt">控件</span></div></nav>
+<div class="doc"><div class="doc-f2"></div><div class="doc-f1"><div class="doc-in">
+<img class="doc-preview-img" src="../assets/images/doc-preview-pc.png" alt="" width="752" height="780"/>
+</div></div></div>
+<div class="ovl">
+<div class="modal" id="modal-status" role="dialog" aria-modal="true">
+<div class="modal-h"><h2 class="modal-tt">证书结果查询中</h2></div>
+<div class="status-body status-body--exception">
+<div class="exception-page__content">
+<div class="exception-page__illus-wrap exception-page__illus--loading" aria-hidden="true">
+<div class="status-spin"></div>
+</div>
+<h3 class="exception-page__title">正在查询证书申请结果</h3>
+<div class="exception-page__desc">
+<p>请稍候，Nota Sign 正通过 CA Hub 查询您的 FPT 证书申请结果。</p>
+</div>
+<p class="exception-page__hint">查询成功后将更新收件人名称并继续签署流程</p>
+</div></div></div></div>
+<footer class="bbar"><div class="bbar-c"><span class="bbar-t2">Copyright © 2013-2026 深圳法大大网络科技有限公司版权所有</span></div></footer>
+</div></div>
+<script>setTimeout(function(){location.href='sign-processing.html'},3000);</script>
+</body>
+</html>

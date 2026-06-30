@@ -1,0 +1,12 @@
+---
+description: 新增或修改 Notasign 设计 token 时同步维护 UI Kit 样例
+globs: "notasign-design-system.css,ui-kit.html,pages/*.css,components/*.js"
+alwaysApply: false
+---
+
+# Design Token Documentation
+
+- 新增、改名或语义化任何 `--ns-*` token 时，必须同步更新 `ui-kit.html` 中对应基础规范区块的可见样例与说明。
+- 颜色 token 必须在 Colors 色彩区增加或更新色卡，并在“语义映射速查”中说明用途。
+- 尺寸、间距、控件宽度 token 必须在对应基础组件或 Spacing 区补充示例说明。
+- 业务页或组件 CSS 使用新 token 后，不应只改 `notasign-design-system.css` 而遗漏 UI Kit 文档。

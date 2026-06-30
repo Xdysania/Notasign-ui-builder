@@ -1,0 +1,61 @@
+---
+description: 生成或修改 NotaSign 列表页后的强制自检清单
+globs: "pages/*.html,pages/*.css,pages/*.js,components/*table*.js,components/*sidebar*.js"
+alwaysApply: false
+---
+
+# NotaSign 列表页生成自检
+
+在交付列表类页面（含 AI 生成结果）前，必须逐项确认。
+
+**通用规范入口**：`docs/notasign-spec-usage.md`（规范引用说明）  
+**列表案例**：`docs/templates/list-page.md`、`list-page-data.md`、`list-page-states.md`
+
+## 结构与依赖
+
+- [ ] `body.ns-app`，`height: 100vh`，`body` / `.ns-app` 无纵向滚动
+- [ ] 顶栏、侧栏、表格均为 **mount point**（`data-ns-business-*`），未粘贴组件内部 HTML
+- [ ] `notasign-design-system.css` + 页面 CSS 链接顺序正确
+- [ ] `components/i18n.js` 在其它组件脚本之前
+- [ ] 仅引入页面实际用到的 `components/*.js`
+
+## 布局与滚动
+
+- [ ] `.ns-app__body`、`.ns-app__content`、表格 mount 含 `min-height: 0` 与 `overflow: hidden` 契约（见 list-page.md）
+- [ ] 分页未使用 `margin-top: auto` 等方式撑出底部白条
+- [ ] 表格更多菜单边界为 `.ns-table-container`，必要时向上展开
+
+## 样式红线
+
+- [ ] 无 `style="..."` 内联样式
+- [ ] 无硬编码 Hex（`#xxxxxx`）作为视觉来源
+- [ ] 无 Tailwind / Bootstrap / 自造 `btn-primary` 等类名
+- [ ] 页面 CSS 未覆盖基础组件内部样式（`ns-btn`、`ns-input`、`ns-select` 等）
+
+## 组件与资产
+
+- [ ] 筛选区：`ns-input--search`、`data-ns-select`、`ns-btn--filter-reset`
+- [ ] 未使用 `data-foundation-status="pending"`、`data-callable="false"`、置灰图标库
+- [ ] 图标路径来自页面 `assets/<page>/` 或规范 Callable 分组
+- [ ] 分页：`data-page-size`、`data-current-page`、`data-total`，监听 `notasign:paginationchange`
+
+## 数据与状态
+
+- [ ] 行数据字段与 `docs/templates/list-page-data.md`（或该页在 components.md 中的扩展）一致
+- [ ] `statusKey` 驱动状态文案与操作，非中文硬编码判断
+- [ ] 若需求含空态/加载/错误：使用 `ns-empty` / `ns-spin` / `ns-alert`，`data-list-state` 切换，empty 时不渲染假表格行
+
+## 国际化
+
+- [ ] 可见文案有 `data-i18n` / `data-i18n-placeholder` / `data-i18n-label`
+- [ ] 长标题/导航使用 `ns-i18n-ellipsis` 等规范截断类
+
+## 文档同步（若变更规范）
+
+- [ ] 新增 `--ns-*` token → 已更新 `ui-kit.html` 样例
+- [ ] 新增可复用组件 / 行字段 → 已更新 `docs/components.md`
+- [ ] 新列表模板 → 已在 `docs/templates/README.md` 登记
+
+## 失败处理
+
+任一项不通过时，先修复再交付；不得用临时内联样式或 duplicate DOM 绕过。
