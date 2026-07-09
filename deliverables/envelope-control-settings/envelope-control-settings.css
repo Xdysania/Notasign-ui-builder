@@ -968,6 +968,7 @@ body.ns-envelope-editor-app {
   position: absolute;
   z-index: 1;
   box-sizing: border-box;
+  pointer-events: none;
 }
 
 .ns-envelope-editor-checkbox-group__frame {
@@ -993,6 +994,7 @@ body.ns-envelope-editor-app {
   border: 0;
   background: transparent;
   overflow: visible;
+  pointer-events: auto;
 }
 
 .ns-envelope-editor-checkbox-group .ns-envelope-editor-field__body--checkbox {
@@ -1064,6 +1066,7 @@ body.ns-envelope-editor-app {
   background-color: var(--ns-editor-party-color);
   color: var(--ns-color-bg-page);
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .ns-envelope-editor-checkbox-group__add::before,
@@ -1100,6 +1103,7 @@ body.ns-envelope-editor-app {
   position: absolute;
   z-index: 1;
   box-sizing: border-box;
+  pointer-events: none;
 }
 
 .ns-envelope-editor-radio-group__frame {
@@ -1125,6 +1129,7 @@ body.ns-envelope-editor-app {
   border: 0;
   background: transparent;
   overflow: visible;
+  pointer-events: auto;
 }
 
 .ns-envelope-editor-radio-group .ns-envelope-editor-field__body--radio {
@@ -1196,6 +1201,7 @@ body.ns-envelope-editor-app {
   background-color: var(--ns-editor-party-color);
   color: var(--ns-color-bg-page);
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .ns-envelope-editor-radio-group__add::before,
