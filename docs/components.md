@@ -207,6 +207,22 @@
 - Use for field explanations. Do not place bare question-mark icons directly in business pages.
 - JS dependency: none; hover and focus are CSS driven.
 
+### Scrollbar (Auto-hide)
+
+- Source: `notasign-design-system.css`, `ui-kit.html#scrollbar`
+- HTML shape:
+
+```html
+<div class="ns-scrollbar-auto is-scrolling" data-scrollbar-ready>
+  <!-- scrollable content -->
+</div>
+```
+
+- Core classes: `ns-scrollbar-auto`; state class `is-scrolling` (toggled by JS on scroll).
+- Tokens: `--ns-scrollbar-size`, `--ns-scrollbar-thumb`, `--ns-scrollbar-thumb-hover`, `--ns-scrollbar-hide-delay`.
+- JS: on `scroll`, add `is-scrolling`; remove after ~700ms idle. See `pages/envelope-editor.js` (`initAutoHideScrollbar`) or `ui-kit.js` (`initScrollbarDemos`).
+- Use for internal scroll areas in envelope editor (canvas, thumbs, cross-seal context). Do not use browser default scrollbars.
+
 ### Fixed Action Footer
 
 - Source: `notasign-design-system.css`, `ui-kit.html#fixed-action-footer`

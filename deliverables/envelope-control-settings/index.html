@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>复选/单选控件设置 — NotaSign</title>
+  <link rel="stylesheet" href="notasign-design-system.css" />
+  <link rel="stylesheet" href="envelope-control-settings.css" />
+  <script src="components/i18n.js" defer></script>
+  <script src="components/select.js" defer></script>
+  <script src="components/input-number.js" defer></script>
+  <script src="envelope-control-settings.js" defer></script>
+</head>
+<body class="ns-envelope-editor-app">
+  <header class="ns-envelope-editor-topbar">
+    <div class="ns-envelope-editor-topbar__left">
+      <div class="ns-envelope-editor-topbar__nav">
+        <button class="ns-icon-btn ns-envelope-editor-icon-btn ns-envelope-editor-icon-btn--close" type="button" aria-label="关闭">
+          <img src="assets/envelope-editor/icon-close.svg" width="20" height="20" alt="" />
+        </button>
+        <span class="ns-envelope-editor-topbar__divider" aria-hidden="true"></span>
+      </div>
+      <h1 class="ns-envelope-editor-topbar__title">复选框 / 单选框控件设置演示</h1>
+    </div>
+  </header>
+
+  <main class="ns-envelope-editor is-thumbs-collapsed" data-envelope-editor>
+    <aside class="ns-envelope-editor-tools" aria-label="控件面板">
+      <div class="ns-envelope-editor-party">
+        <button class="ns-envelope-editor-party__trigger" type="button" data-party-menu-trigger aria-haspopup="listbox" aria-expanded="false">
+          <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+          <span class="ns-envelope-editor-party__name" data-active-party-name>法大大科技有限公司</span>
+          <img class="ns-envelope-editor-party__chevron" src="assets/envelope-editor/icon-chevron-down.svg" width="16" height="16" alt="" draggable="false" />
+        </button>
+        <div class="ns-envelope-editor-party__menu" role="listbox" data-party-menu hidden>
+          <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="gray">
+            <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+            发起方填写
+          </button>
+          <button class="ns-envelope-editor-party__option is-active" type="button" role="option" aria-selected="true" data-party="purple">
+            <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+            法大大科技有限公司
+          </button>
+          <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="blue">
+            <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+            上海测试公司
+          </button>
+          <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="green">
+            <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+            采购方代表
+          </button>
+          <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="orange">
+            <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+            销售方代表
+          </button>
+        </div>
+      </div>
+
+      <div class="ns-control-palette ns-envelope-editor-tool-palette">
+        <p class="ns-control-palette__hint">将复选框或单选框拖放到文档上，配置尺寸与选项值</p>
+        <div class="ns-control-palette__list ns-envelope-editor-tool-list">
+          <div class="ns-control-palette__item-wrap">
+            <button class="ns-control-palette__item ns-envelope-editor-tool" type="button" data-field-type="checkbox" data-field-label="复选框" data-field-icon="assets/envelope-editor/icon-checkbox.svg">
+              <img class="ns-control-palette__icon ns-envelope-editor-tool__icon" src="assets/envelope-editor/icon-checkbox.svg" width="18" height="18" alt="" draggable="false" />
+              <span class="ns-control-palette__label">复选框</span>
+            </button>
+          </div>
+          <div class="ns-control-palette__item-wrap">
+            <button class="ns-control-palette__item ns-envelope-editor-tool" type="button" data-field-type="radio" data-field-label="单选框" data-field-icon="assets/envelope-editor/icon-radio.svg">
+              <img class="ns-control-palette__icon ns-envelope-editor-tool__icon" src="assets/envelope-editor/icon-radio.svg" width="17" height="17" alt="" draggable="false" />
+              <span class="ns-control-palette__label">单选框</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="ns-envelope-editor-subtoolbar">
+      <div class="ns-envelope-editor-toolbar">
+        <div class="ns-envelope-editor-toolbar__center">
+          <button class="ns-envelope-editor-toolbar__btn" type="button" aria-label="缩小" data-zoom-out>−</button>
+          <div class="ns-dropdown ns-envelope-editor-zoom-wrap">
+            <button class="ns-envelope-editor-zoom" type="button" aria-haspopup="listbox" aria-expanded="false" data-zoom-trigger>
+              <span data-zoom-label>100%</span>
+              <img class="ns-envelope-editor-zoom__chevron" src="assets/signing-list/icon-select-chevron.svg" width="12" height="12" alt="" draggable="false" aria-hidden="true" />
+            </button>
+            <div class="ns-dropdown__menu ns-envelope-editor-zoom-menu" role="listbox" data-zoom-menu hidden>
+              <button class="ns-dropdown__item ns-envelope-editor-zoom-option" type="button" role="option" data-zoom-value="0.5">50%</button>
+              <button class="ns-dropdown__item ns-envelope-editor-zoom-option is-active" type="button" role="option" aria-selected="true" data-zoom-value="1">100%</button>
+              <button class="ns-dropdown__item ns-envelope-editor-zoom-option" type="button" role="option" data-zoom-value="1.5">150%</button>
+              <button class="ns-dropdown__item ns-envelope-editor-zoom-option" type="button" role="option" data-zoom-value="2">200%</button>
+            </div>
+          </div>
+          <button class="ns-envelope-editor-toolbar__btn" type="button" aria-label="放大" data-zoom-in>+</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="ns-envelope-editor-stage" aria-label="文档编辑区">
+      <div class="ns-envelope-editor-canvas ns-scrollbar-auto" data-canvas>
+        <article class="ns-envelope-editor-pdf" data-pdf-page data-page-id="demo-page-1">
+          <div class="ns-envelope-editor-pdf__content" aria-hidden="true">
+            <h2>销售合同英文版</h2>
+            <p class="ns-envelope-editor-pdf__center">CONTRACT</p>
+            <div class="ns-envelope-editor-pdf__grid">
+              <span>日期:</span><span>合同号码:</span>
+              <span>Date:</span><span>Contract No.:</span>
+              <span>买 方：（The Buyers）</span><span>卖方：（The Sellers）</span>
+            </div>
+            <p>兹经买卖双方同意按照以下条款由买方购进，卖方售出以下商品：</p>
+            <p>This contract is made by and between the Buyers and the Sellers; whereby the Buyers agree to buy and the Sellers agree to sell the under-mentioned goods subject to the terms and conditions as stipulated hereinafter:</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="ns-envelope-editor-props" aria-label="控件编辑浮窗" data-props-panel hidden>
+      <div class="ns-envelope-editor-props__head">
+        <h2 data-props-title>控件</h2>
+        <button class="ns-icon-btn ns-envelope-editor-icon-btn ns-envelope-editor-props__close" type="button" aria-label="关闭控件编辑" data-props-close>
+          <img src="assets/envelope-editor/icon-close.svg" width="20" height="20" alt="" />
+        </button>
+      </div>
+
+      <div class="ns-envelope-editor-props__body">
+        <div class="ns-envelope-editor-party" data-props-party-selector data-party="purple">
+          <button class="ns-envelope-editor-party__trigger" type="button" data-party-menu-trigger aria-haspopup="listbox" aria-expanded="false">
+            <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+            <span class="ns-envelope-editor-party__name" data-props-party-name>法大大科技有限公司</span>
+            <img class="ns-envelope-editor-party__chevron" src="assets/envelope-editor/icon-chevron-down.svg" width="16" height="16" alt="" draggable="false" />
+          </button>
+          <div class="ns-envelope-editor-party__menu" role="listbox" data-party-menu data-props-party-menu hidden>
+            <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="gray">
+              <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+              发起方填写
+            </button>
+            <button class="ns-envelope-editor-party__option is-active" type="button" role="option" aria-selected="true" data-party="purple">
+              <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+              法大大科技有限公司
+            </button>
+            <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="blue">
+              <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+              上海测试公司
+            </button>
+            <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="green">
+              <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+              采购方代表
+            </button>
+            <button class="ns-envelope-editor-party__option" type="button" role="option" aria-selected="false" data-party="orange">
+              <span class="ns-envelope-editor-party__dot" aria-hidden="true"></span>
+              销售方代表
+            </button>
+          </div>
+        </div>
+
+        <label class="ns-check ns-envelope-editor-props__check">
+          <input class="ns-check__input" type="checkbox" checked data-props-required />
+          <span>必填</span>
+        </label>
+
+        <label class="ns-envelope-editor-props__field">
+          <span>控件名称</span>
+          <input class="ns-input" type="text" value="" data-props-name />
+        </label>
+
+        <label class="ns-envelope-editor-props__field">
+          <span>使用提示</span>
+          <textarea class="ns-input ns-textarea ns-envelope-editor-props__textarea" placeholder="请输入" data-props-hint></textarea>
+        </label>
+
+        <fieldset class="ns-envelope-editor-props__field ns-envelope-editor-props__fieldset">
+          <legend>位置</legend>
+          <label><input class="ns-input ns-envelope-editor-input--short" type="text" value="0" inputmode="numeric" data-props-left /> 左侧距离像素</label>
+          <label><input class="ns-input ns-envelope-editor-input--short" type="text" value="0" inputmode="numeric" data-props-top /> 顶部距离像素</label>
+        </fieldset>
+
+        <div class="ns-envelope-editor-props__type-section" data-props-section="checkbox" hidden>
+          <div class="ns-envelope-editor-props__field">
+            <span>复选框尺寸</span>
+            <div class="ns-envelope-editor-props__size-control">
+              <div class="ns-input-number ns-envelope-editor-props__number ns-envelope-editor-props__number--compact" data-props-checkbox-size-wrap>
+                <input class="ns-input-number__input" type="text" inputmode="numeric" value="18" aria-label="复选框尺寸（px，10–32）" data-props-checkbox-size />
+                <div class="ns-input-number__controls" aria-hidden="false">
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增大复选框"></button>
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="缩小复选框"></button>
+                </div>
+              </div>
+              <input class="ns-envelope-editor-props__size-slider" type="range" min="10" max="32" step="1" value="18" aria-label="滑动调整复选框尺寸" data-props-checkbox-size-range />
+            </div>
+          </div>
+          <div class="ns-envelope-editor-props__field">
+            <span>勾选框值</span>
+            <div class="ns-envelope-editor-props__option-list" data-props-checkbox-options></div>
+            <button class="ns-btn ns-btn--lg ns-btn--secondary ns-btn--block" type="button" data-props-checkbox-add>添加</button>
+          </div>
+        </div>
+
+        <div class="ns-envelope-editor-props__type-section" data-props-section="radio" hidden>
+          <div class="ns-envelope-editor-props__field">
+            <span>单选框尺寸</span>
+            <div class="ns-envelope-editor-props__size-control">
+              <div class="ns-input-number ns-envelope-editor-props__number ns-envelope-editor-props__number--compact" data-props-radio-size-wrap>
+                <input class="ns-input-number__input" type="text" inputmode="numeric" value="18" aria-label="单选框尺寸（px，10–32）" data-props-radio-size />
+                <div class="ns-input-number__controls" aria-hidden="false">
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增大单选框"></button>
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="缩小单选框"></button>
+                </div>
+              </div>
+              <input class="ns-envelope-editor-props__size-slider" type="range" min="10" max="32" step="1" value="18" aria-label="滑动调整单选框尺寸" data-props-radio-size-range />
+            </div>
+          </div>
+          <div class="ns-envelope-editor-props__field">
+            <span>单选框值</span>
+            <div class="ns-envelope-editor-props__option-list" data-props-radio-options></div>
+            <button class="ns-btn ns-btn--lg ns-btn--secondary ns-btn--block" type="button" data-props-radio-add>添加</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="ns-btn ns-btn--lg ns-btn--danger ns-btn--block ns-envelope-editor-props__delete" type="button" data-delete-field>删除控件</button>
+    </aside>
+  </main>
+
+  <div class="ns-envelope-editor-drag-portal" data-envelope-editor-drag-portal aria-hidden="true"></div>
+</body>
+</html>

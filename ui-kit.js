@@ -348,7 +348,7 @@
   };
 
   var CATALOG_RELATIONS = {
-    checkbox: "关联：发送设置、控件拖拽编辑；用于设置项与控件属性必填项",
+    checkbox: "关联：发送设置、控件拖拽编辑；用于设置项与画布复选框控件尺寸、必填项",
     "input-number": "关联：发送设置；用于签署期限、强制阅读秒数",
     tooltip: "关联：发送设置；用于电子印章、e-Meterai、强制阅读说明",
     "fixed-action-footer": "关联：发送设置；用于底部保存操作栏",
@@ -661,6 +661,27 @@
     });
   }
 
+  /**
+   * UI Kit 滚动条示意：为 `.ns-scrollbar-auto` 绑定滚动时显示、停止后隐藏。
+   * @param {ParentNode} [root]
+   */
+  function initScrollbarDemos(root) {
+    (root || document).querySelectorAll(".ns-scrollbar-auto").forEach(function (container) {
+      if (container.getAttribute("data-scrollbar-ready") === "true") return;
+      container.setAttribute("data-scrollbar-ready", "true");
+
+      var hideTimer = null;
+      container.addEventListener("scroll", function () {
+        container.classList.add("is-scrolling");
+        if (hideTimer) window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(function () {
+          container.classList.remove("is-scrolling");
+          hideTimer = null;
+        }, 700);
+      }, { passive: true });
+    });
+  }
+
   window.addEventListener("hashchange", initFromHash);
   annotateFoundationStatus();
   buildComponentCatalog();
@@ -691,5 +712,6 @@
   initCatalogSearch();
   initDropdownButtonDemos();
   initResizableDemos();
+  initScrollbarDemos(document);
   initFromHash();
 })();

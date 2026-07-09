@@ -26,6 +26,7 @@
             <li><a class="ns-kit-nav__link" href="#spacing-scale" data-panel="spacing-scale">Spacing 间距</a></li>
             <li><a class="ns-kit-nav__link" href="#radius" data-panel="radius">Radius 圆角</a></li>
             <li><a class="ns-kit-nav__link" href="#shadows" data-panel="shadows">Shadow 阴影</a></li>
+            <li><a class="ns-kit-nav__link" href="#scrollbar" data-panel="scrollbar">Scrollbar 滚动条</a></li>
             <li><a class="ns-kit-nav__link" href="#icons" data-panel="icons">Icons 图标</a></li>
           </ul>
         </div>
@@ -595,6 +596,46 @@
                     <tr data-token="--ns-z-dropdown"><td>下拉层级</td><td>1000</td><td>下拉层</td></tr>
                     <tr data-token="--ns-z-modal"><td>对话框层级</td><td>1300</td><td>对话框</td></tr>
                     <tr data-token="--ns-z-tooltip"><td>提示层级</td><td>1500</td><td>Tooltip</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="ns-kit-panel" id="panel-scrollbar" data-title="滚动条" role="region" aria-label="滚动条" hidden>
+        <header class="ns-kit-page-header ns-kit-page-header--compact">
+          <p class="ns-kit-page-header__breadcrumb ns-text-caption">基本元素 · 滚动条</p>
+          <h1 class="ns-text-page-title">滚动条</h1>
+        </header>
+        <div class="ns-kit-panel__content">
+          <section class="ns-kit-doc" id="scrollbar" aria-labelledby="title-scrollbar">
+            <header class="ns-kit-doc__header">
+              <h3 class="ns-kit-doc__title" id="title-scrollbar">Scrollbar<span class="ns-kit-doc__title-en">滚动条</span></h3>
+            </header>
+            <p class="ns-kit-doc__spec">[AI 规范：滚动条] 可滚动区域统一使用 <code>ns-scrollbar-auto</code>：默认隐藏滑块，滚动时显示 4px 圆角细滑块（<code>--ns-scrollbar-thumb</code>），停止滚动约 700ms 后自动隐藏。签署编辑页画布、文档缩略图栏、骑缝章相关滚动区均须使用此样式，禁止浏览器默认粗滚动条。</p>
+            <div class="ns-kit-doc__body">
+              <div class="ns-kit-demo">
+                <p class="ns-kit-demo__label">Auto-hide scrollbar · 滚动下方区域查看效果</p>
+                <div class="ns-kit-scrollbar-demo ns-scrollbar-auto" tabindex="0" aria-label="滚动条示意">
+                  <p>第 1 段示意内容</p>
+                  <p>第 2 段示意内容</p>
+                  <p>第 3 段示意内容</p>
+                  <p>第 4 段示意内容</p>
+                  <p>第 5 段示意内容</p>
+                  <p>第 6 段示意内容</p>
+                  <p>第 7 段示意内容</p>
+                  <p>第 8 段示意内容</p>
+                </div>
+                <table class="ns-kit-token-table">
+                  <thead><tr><th scope="col">规格</th><th scope="col">Token / Class</th><th scope="col">场景</th></tr></thead>
+                  <tbody>
+                    <tr data-token="--ns-scrollbar-size"><td>滑块宽度</td><td>4px（--ns-spacing-4）</td><td>纵向 / 横向滚动条</td></tr>
+                    <tr data-token="--ns-scrollbar-thumb"><td>滑块颜色</td><td>neutral-100 · 28%</td><td>滚动中显示</td></tr>
+                    <tr data-token="--ns-scrollbar-thumb-hover"><td>滑块悬停</td><td>neutral-100 · 40%</td><td>滚动中 hover</td></tr>
+                    <tr data-token="--ns-scrollbar-hide-delay"><td>隐藏延迟</td><td>700ms</td><td>停止滚动后淡出</td></tr>
+                    <tr><td>工具类</td><td><code>ns-scrollbar-auto</code> + <code>is-scrolling</code></td><td>所有内部滚动容器</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1507,7 +1548,7 @@
           <h3 class="ns-kit-doc__title" id="title-checkbox">Checkbox<span class="ns-kit-doc__title-en">多选按钮</span></h3>
         </header>
         <p class="ns-kit-doc__spec">[AI 规范] label.ns-check + input.ns-check__input；控件 14×14；文本 14/lh22；gap 4；支持未选、选中、部分选中（indeterminate）与 disabled。</p>
-        <p class="ns-kit-doc__relation">关联典型页面：<a href="#send-settings" data-panel="send-settings">发送设置</a>（控件、信封、强制阅读、收件人设置项）</p>
+        <p class="ns-kit-doc__relation">关联典型页面：<a href="#send-settings" data-panel="send-settings">发送设置</a>（控件、信封、强制阅读、收件人设置项）、<a href="#envelope-editor" data-panel="envelope-editor">控件拖拽编辑</a>（画布复选框控件尺寸）</p>
         <div class="ns-kit-doc__body">
           <div class="ns-kit-demo">
             <p class="ns-kit-demo__label">Checkbox</p>
@@ -2362,8 +2403,8 @@
           </h1>
         </header>
         <div class="ns-kit-panel__content ns-kit-panel__content--flush">
-          <p class="ns-kit-doc__spec">[AI 规范：控件拖拽编辑] 组件化典型页为 <code>pages/envelope-editor.html</code>，表现签署发送流程中的控件放置步骤：左侧参与方与控件工具栏，中间 PDF 画布，右侧文档缩略图，以及控件选中后的属性编辑浮窗。该页为交互型典型页，允许页面级脚本处理拖放、参与方颜色切换、缩略图折叠和属性面板开关。</p>
-          <p class="ns-kit-doc__relation">组合基础组件：<a href="#button" data-panel="button">Button</a>、<a href="#checkbox" data-panel="checkbox">Checkbox</a>、<a href="#select" data-panel="select">Select</a>；组合页面模式：顶部操作栏、左侧工具栏、PDF 画布、右侧属性浮窗。</p>
+          <p class="ns-kit-doc__spec">[AI 规范：控件拖拽编辑] 组件化典型页为 <code>pages/envelope-editor.html</code>，表现签署发送流程中的控件放置步骤：左侧参与方与控件工具栏，中间 PDF 画布，右侧文档缩略图，以及控件选中后的属性编辑浮窗。该页为交互型典型页，允许页面级脚本处理拖放、参与方颜色切换、缩略图折叠和属性面板开关。复选框控件支持控件级「复选框尺寸」设置（10–32 px，宽高等比），同一控件下全部选项同步变化。</p>
+          <p class="ns-kit-doc__relation">组合基础组件：<a href="#button" data-panel="button">Button</a>、<a href="#checkbox" data-panel="checkbox">Checkbox</a>、<a href="#input-number" data-panel="input-number">InputNumber</a>、<a href="#select" data-panel="select">Select</a>；组合页面模式：顶部操作栏、左侧工具栏、PDF 画布、右侧属性浮窗。</p>
           <div class="ns-kit-page-preview">
             <iframe
               class="ns-kit-page-preview__frame"

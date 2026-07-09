@@ -103,8 +103,14 @@
           </div>
           <div class="ns-control-palette__item-wrap">
             <button class="ns-control-palette__item ns-envelope-editor-tool" type="button" data-field-type="checkbox" data-field-label="复选框" data-field-icon="assets/envelope-editor/icon-checkbox.svg">
-              <img class="ns-control-palette__icon ns-envelope-editor-tool__icon" src="assets/envelope-editor/icon-checkbox.svg" width="16" height="16" alt="" draggable="false" />
+              <img class="ns-control-palette__icon ns-envelope-editor-tool__icon" src="assets/envelope-editor/icon-checkbox.svg" width="18" height="18" alt="" draggable="false" />
               <span class="ns-control-palette__label">复选框</span>
+            </button>
+          </div>
+          <div class="ns-control-palette__item-wrap">
+            <button class="ns-control-palette__item ns-envelope-editor-tool" type="button" data-field-type="radio" data-field-label="单选框" data-field-icon="assets/envelope-editor/icon-radio.svg">
+              <img class="ns-control-palette__icon ns-envelope-editor-tool__icon" src="assets/envelope-editor/icon-radio.svg" width="17" height="17" alt="" draggable="false" />
+              <span class="ns-control-palette__label">单选框</span>
             </button>
           </div>
           <div class="ns-control-palette__item-wrap">
@@ -154,7 +160,7 @@
     </div>
 
     <section class="ns-envelope-editor-stage" aria-label="文档编辑区">
-      <div class="ns-envelope-editor-canvas" data-canvas>
+      <div class="ns-envelope-editor-canvas ns-scrollbar-auto" data-canvas>
         <article class="ns-envelope-editor-pdf" data-pdf-page data-page-id="contract-1-page-1">
           <div class="ns-envelope-editor-pdf__content" aria-hidden="true">
             <h2>销售合同英文版</h2>
@@ -300,7 +306,7 @@
     </section>
 
     <aside class="ns-envelope-editor-thumbs-shell" aria-label="文档缩略图" data-thumbs-shell>
-      <div class="ns-envelope-editor-thumbs" data-thumbs>
+      <div class="ns-envelope-editor-thumbs ns-scrollbar-auto" data-thumbs>
         <section class="ns-envelope-editor-doc">
           <button class="ns-envelope-editor-doc__head" type="button">测试合同文件 <span class="ns-envelope-editor-chevron" aria-hidden="true"></span></button>
           <ol class="ns-envelope-editor-page-list">
@@ -483,9 +489,43 @@
 
         <div class="ns-envelope-editor-props__type-section" data-props-section="checkbox" hidden>
           <div class="ns-envelope-editor-props__field">
+            <span>复选框尺寸</span>
+            <div class="ns-envelope-editor-props__size-control">
+              <div class="ns-input-number ns-envelope-editor-props__number ns-envelope-editor-props__number--compact" data-props-checkbox-size-wrap>
+                <input class="ns-input-number__input" type="text" inputmode="numeric" value="18" aria-label="复选框尺寸（px，10–32）" data-props-checkbox-size />
+                <div class="ns-input-number__controls" aria-hidden="false">
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增大复选框"></button>
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="缩小复选框"></button>
+                </div>
+              </div>
+              <input class="ns-envelope-editor-props__size-slider" type="range" min="10" max="32" step="1" value="18" aria-label="滑动调整复选框尺寸" data-props-checkbox-size-range />
+            </div>
+          </div>
+          <div class="ns-envelope-editor-props__field">
             <span>勾选框值</span>
             <div class="ns-envelope-editor-props__option-list" data-props-checkbox-options></div>
-            <button class="ns-btn ns-btn--lg ns-btn--secondary ns-btn--secondary-brand ns-btn--block" type="button" data-props-checkbox-add>添加</button>
+            <button class="ns-btn ns-btn--lg ns-btn--secondary ns-btn--block" type="button" data-props-checkbox-add>添加</button>
+          </div>
+        </div>
+
+        <div class="ns-envelope-editor-props__type-section" data-props-section="radio" hidden>
+          <div class="ns-envelope-editor-props__field">
+            <span>单选框尺寸</span>
+            <div class="ns-envelope-editor-props__size-control">
+              <div class="ns-input-number ns-envelope-editor-props__number ns-envelope-editor-props__number--compact" data-props-radio-size-wrap>
+                <input class="ns-input-number__input" type="text" inputmode="numeric" value="18" aria-label="单选框尺寸（px，10–32）" data-props-radio-size />
+                <div class="ns-input-number__controls" aria-hidden="false">
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--increase" aria-label="增大单选框"></button>
+                  <button type="button" class="ns-input-number__btn ns-input-number__btn--decrease" aria-label="缩小单选框"></button>
+                </div>
+              </div>
+              <input class="ns-envelope-editor-props__size-slider" type="range" min="10" max="32" step="1" value="18" aria-label="滑动调整单选框尺寸" data-props-radio-size-range />
+            </div>
+          </div>
+          <div class="ns-envelope-editor-props__field">
+            <span>单选框值</span>
+            <div class="ns-envelope-editor-props__option-list" data-props-radio-options></div>
+            <button class="ns-btn ns-btn--lg ns-btn--secondary ns-btn--block" type="button" data-props-radio-add>添加</button>
           </div>
         </div>
 
