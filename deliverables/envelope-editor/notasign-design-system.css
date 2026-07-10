@@ -2148,6 +2148,48 @@ select.ns-select:focus {
   color: var(--ns-color-brand);
 }
 
+.ns-select--descriptive .ns-select__menu {
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: var(--ns-shadow-dropdown);
+}
+
+.ns-select--descriptive .ns-select__option {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  height: auto;
+  min-height: 0;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+}
+
+.ns-select--descriptive .ns-select__option:hover,
+.ns-select--descriptive .ns-select__option:focus-visible,
+.ns-select--descriptive .ns-select__option.is-selected {
+  background: #f8f8f8;
+  color: inherit;
+  outline: none;
+}
+
+.ns-select--descriptive .ns-select__option strong,
+.ns-select--descriptive .ns-select__option .ns-select__option-label {
+  font-size: var(--ns-font-size-sm);
+  font-weight: var(--ns-font-weight-regular);
+  line-height: var(--ns-line-height-sm);
+  color: var(--ns-color-text-primary);
+}
+
+.ns-select--descriptive .ns-select__option small,
+.ns-select--descriptive .ns-select__option .ns-select__option-desc {
+  font-size: 12px;
+  line-height: normal;
+  color: #929292;
+  white-space: normal;
+}
+
 /* ==========================================================================
    Date Picker (placeholder shell)
    ========================================================================== */

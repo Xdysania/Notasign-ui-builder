@@ -43,6 +43,7 @@
     "attachmentAllowMultiple",
     "handwriteFontSize",
     "handwriteGuide",
+    "handwriteMode",
     "checkboxOptions",
     "checkboxSize",
     "radioOptions",
@@ -61,6 +62,7 @@
     attachmentAllowMultiple: "data-field-attachment-allow-multiple",
     handwriteFontSize: "data-field-handwrite-font-size",
     handwriteGuide: "data-field-handwrite-guide",
+    handwriteMode: "data-field-handwrite-mode",
     checkboxOptions: "data-field-checkbox-options",
     checkboxSize: "data-field-checkbox-size",
     radioOptions: "data-field-radio-options",
@@ -79,15 +81,20 @@
     attachmentAllowMultiple: "true",
     handwriteFontSize: "14",
     handwriteGuide: "",
+    handwriteMode: "adaptive",
     checkboxOptions: '[{"label":"选项1","checked":false}]',
     checkboxSize: "18",
     radioOptions: '[{"label":"选项1","checked":true}]',
     radioSize: "18",
   };
 
+  var HANDWRITE_ICON_BASE_SIZE = 20;
+  var HANDWRITE_BODY_PAD_X = 8;
+  var HANDWRITE_BODY_PAD_Y = 6;
+
   var FIELD_LAYOUTS = {
     signature: { width: 158, height: 86, minWidth: 80, minHeight: 48, anchorX: 79, anchorY: 43 },
-    handwrite: { width: 158, height: 120, minWidth: 80, minHeight: 48, anchorX: 79, anchorY: 60 },
+    handwrite: { width: 158, height: 120, minWidth: 10, minHeight: 10, anchorX: 79, anchorY: 60 },
     seal: { width: 128, height: 128, minWidth: 64, minHeight: 64, anchorX: 64, anchorY: 64 },
     image: { width: 128, height: 128, minWidth: 64, minHeight: 64, anchorX: 64, anchorY: 64 },
     date: { width: 160, height: 30, minWidth: 160, minHeight: 30, anchorX: 80, anchorY: 15, resizable: false },
@@ -96,8 +103,11 @@
     radio: { width: 18, height: 18, minWidth: 18, minHeight: 18, anchorX: 9, anchorY: 9 },
   };
 
-  var CHECKBOX_ITEM_GAP = 42;
+  var CHECKBOX_ITEM_GAP = 10;
   var CHECKBOX_GROUP_PADDING = 6;
+  var CHECKBOX_SAFETY_GAP_BASE = 4;
+  var CHECKBOX_ADD_BTN_GAP = 8;
+  var CHECKBOX_ADD_BTN_SIZE = 16;
   var CHECKBOX_SIZE_MIN = 10;
   var CHECKBOX_SIZE_MAX = 32;
   var CHECKBOX_SIZE_DEFAULT = 18;
@@ -255,14 +265,152 @@
   }
 
   /**
+   * 按基准尺寸等比换算复选框组内边距。
+   * @param {number} size
+   * @returns {number}
+   */
+  function getScaledCheckboxGroupPadding(size) {
+    var resolved = clampCheckboxSize(size) || CHECKBOX_SIZE_DEFAULT;
+    return Math.round(CHECKBOX_GROUP_PADDING * resolved / CHECKBOX_SIZE_DEFAULT);
+  }
+
+  /**
+   * 按基准尺寸等比换算复选框选项间距。
+   * @param {number} size
+   * @returns {number}
+   */
+  function getScaledCheckboxItemGap(size) {
+    var resolved = clampCheckboxSize(size) || CHECKBOX_SIZE_DEFAULT;
+    return Math.round(CHECKBOX_ITEM_GAP * resolved / CHECKBOX_SIZE_DEFAULT);
+  }
+
+  /**
+   * @param {HTMLElement} group
+   * @returns {number}
+   */
+  function getCheckboxGroupPadding(group) {
+    return getScaledCheckboxGroupPadding(getCheckboxSize(group));
+  }
+
+  /**
+   * @param {HTMLElement} group
+   * @returns {number}
+   */
+  function getCheckboxItemGap(group) {
+    return getScaledCheckboxItemGap(getCheckboxSize(group));
+  }
+
+  /**
+   * 同步复选框组等比缩放相关的 CSS 变量。
+   * @param {HTMLElement} group
+   * @param {number} size
+   */
+  function syncCheckboxGroupScaleVars(group, size) {
+    if (!group) return;
+    var resolved = clampCheckboxSize(size) || CHECKBOX_SIZE_DEFAULT;
+    var scale = resolved / CHECKBOX_SIZE_DEFAULT;
+    group.style.setProperty("--ns-editor-checkbox-scale", String(scale));
+    group.style.setProperty(
+      "--ns-editor-checkbox-safety-gap",
+      Math.round(CHECKBOX_SAFETY_GAP_BASE * scale) + "px"
+    );
+  }
+
+  /**
+   * 复选框组内相邻选项的垂直步进（尺寸 + 间距）。
+   * @param {HTMLElement} group
+   * @returns {number}
+   */
+  function getCheckboxItemStep(group) {
+    return getCheckboxSize(group) + getCheckboxItemGap(group);
+  }
+
+  /**
+   * 计算复选框组内第 index 个选项的默认 top。
+   * @param {HTMLElement} group
+   * @param {number} index
+   * @returns {number}
+   */
+  function getCheckboxItemDefaultTop(group, index) {
+    return getCheckboxGroupPadding(group) + index * getCheckboxItemStep(group);
+  }
+
+  /**
+   * 计算新增复选框选项的 top。
+   * @param {HTMLElement} group
+   * @param {HTMLElement|null} lastItem
+   * @returns {number}
+   */
+  function getNextCheckboxItemTop(group, lastItem) {
+    if (!lastItem) return getCheckboxGroupPadding(group);
+    var lastTop = parseFloat(lastItem.style.top) || getCheckboxGroupPadding(group);
+    return lastTop + lastItem.offsetHeight + getCheckboxItemGap(group);
+  }
+
+  /**
+   * 按新尺寸等比重算复选框组内各选项位置（间距、内边距同步缩放）。
+   * @param {HTMLElement} group
+   * @param {number} newSize
+   * @param {number} oldSize
+   */
+  function relayoutCheckboxGroupItemsForSize(group, newSize, oldSize) {
+    var items = getCheckboxGroupItems(group);
+    if (!items.length) return;
+
+    var resolved = clampCheckboxSize(newSize) || CHECKBOX_SIZE_DEFAULT;
+    var previous = clampCheckboxSize(oldSize) || CHECKBOX_SIZE_DEFAULT;
+    if (resolved === previous) return;
+
+    var padding = getScaledCheckboxGroupPadding(resolved);
+    var gap = getScaledCheckboxItemGap(resolved);
+    var firstLeft = parseFloat(items[0].style.left);
+    if (!Number.isFinite(firstLeft)) firstLeft = getScaledCheckboxGroupPadding(previous);
+
+    var isVerticalStack = items.every(function (item) {
+      var left = parseFloat(item.style.left);
+      if (!Number.isFinite(left)) left = firstLeft;
+      return Math.abs(left - firstLeft) <= 1;
+    });
+
+    if (isVerticalStack) {
+      items.forEach(function (item, index) {
+        item.style.left = padding + "px";
+        item.style.top = padding + index * (resolved + gap) + "px";
+      });
+      return;
+    }
+
+    var scale = resolved / previous;
+    items.forEach(function (item) {
+      var left = parseFloat(item.style.left);
+      var top = parseFloat(item.style.top);
+      if (!Number.isFinite(left)) left = 0;
+      if (!Number.isFinite(top)) top = 0;
+      item.style.left = Math.round(left * scale) + "px";
+      item.style.top = Math.round(top * scale) + "px";
+    });
+  }
+
+  /**
    * 将尺寸同步到同一控件下的全部复选框选项。
    * @param {HTMLElement} group
    * @param {string|number} size
+   * @param {string|number} [previousSize]
    */
-  function applyCheckboxSizeToGroup(group, size) {
+  function applyCheckboxSizeToGroup(group, size, previousSize) {
     if (!group || !group.hasAttribute("data-checkbox-group")) return;
     var resolved = clampCheckboxSize(size) || CHECKBOX_SIZE_DEFAULT;
+    var oldSize =
+      previousSize != null && previousSize !== ""
+        ? clampCheckboxSize(previousSize) || CHECKBOX_SIZE_DEFAULT
+        : getCheckboxSize(group);
+
+    if (oldSize !== resolved) {
+      relayoutCheckboxGroupItemsForSize(group, resolved, oldSize);
+    }
+
     group.setAttribute(FIELD_SETTING_ATTRS.checkboxSize, String(resolved));
+    syncCheckboxGroupScaleVars(group, resolved);
     getCheckboxGroupItems(group).forEach(function (item) {
       item.style.width = resolved + "px";
       item.style.height = resolved + "px";
@@ -338,8 +486,9 @@
     var owner = getSettingsOwner(field);
     if (!owner || !FIELD_SETTING_ATTRS[key]) return;
     options = options || {};
+    var previousValue = owner.getAttribute(FIELD_SETTING_ATTRS[key]);
     owner.setAttribute(FIELD_SETTING_ATTRS[key], value == null ? "" : String(value));
-    applyFieldStyleSettings(owner);
+    applyFieldStyleSettings(owner, { changedKey: key, previousValue: previousValue });
     if (!options.skipPreview) schedulePagePreviewSync(owner.closest("[data-pdf-page]"));
   }
 
@@ -443,7 +592,10 @@
     var frame = ensureCheckboxGroupFrame(group);
     var items = getCheckboxGroupItems(group);
     if (!frame || !items.length) return;
-    var padding = CHECKBOX_GROUP_PADDING;
+    var size = getCheckboxSize(group);
+    var padding = getScaledCheckboxGroupPadding(size);
+    var addGap = Math.round(CHECKBOX_ADD_BTN_GAP * size / CHECKBOX_SIZE_DEFAULT);
+    var addBtnSize = Math.round(CHECKBOX_ADD_BTN_SIZE * size / CHECKBOX_SIZE_DEFAULT);
     var minLeft = Infinity;
     var minTop = Infinity;
     var maxRight = 0;
@@ -471,11 +623,11 @@
     var addBtn = group.querySelector("[data-checkbox-group-add]");
     if (addBtn) {
       addBtn.style.left = frameLeft + frameWidth / 2 + "px";
-      addBtn.style.top = frameTop + frameHeight + 8 + "px";
+      addBtn.style.top = frameTop + frameHeight + addGap + "px";
     }
 
     group.style.width = Math.ceil(frameLeft + frameWidth) + "px";
-    group.style.height = Math.ceil(frameTop + frameHeight + 8 + 16) + "px";
+    group.style.height = Math.ceil(frameTop + frameHeight + addGap + addBtnSize) + "px";
   }
 
   /**
@@ -576,8 +728,8 @@
     var nextLabel = label || "选项" + (options.length + 1);
     var items = getCheckboxGroupItems(group);
     var last = items[items.length - 1];
-    var left = last ? parseFloat(last.style.left) || CHECKBOX_GROUP_PADDING : CHECKBOX_GROUP_PADDING;
-    var top = last ? (parseFloat(last.style.top) || CHECKBOX_GROUP_PADDING) + CHECKBOX_ITEM_GAP : CHECKBOX_GROUP_PADDING;
+    var left = last ? parseFloat(last.style.left) || getCheckboxGroupPadding(group) : getCheckboxGroupPadding(group);
+    var top = getNextCheckboxItemTop(group, last);
     options.push({ label: nextLabel, checked: false });
     createCheckboxGroupItem(group, nextLabel, left, top, { isNew: true });
     setCheckboxOptions(group, options, { skipPreview: true });
@@ -651,13 +803,13 @@
         createCheckboxGroupItem(
           group,
           itemData.label || "选项" + (index + 1),
-          itemData.left != null ? itemData.left : CHECKBOX_GROUP_PADDING,
-          itemData.top != null ? itemData.top : CHECKBOX_GROUP_PADDING + index * CHECKBOX_ITEM_GAP
+          itemData.left != null ? itemData.left : getCheckboxGroupPadding(group),
+          itemData.top != null ? itemData.top : getCheckboxItemDefaultTop(group, index)
         );
       });
       setCheckboxOptions(group, getCheckboxOptions(group), { skipPreview: true });
     } else {
-      createCheckboxGroupItem(group, "选项1", CHECKBOX_GROUP_PADDING, CHECKBOX_GROUP_PADDING);
+      createCheckboxGroupItem(group, "选项1", getCheckboxGroupPadding(group), getCheckboxGroupPadding(group));
       setCheckboxOptions(group, [{ label: "选项1", checked: false }], { skipPreview: true });
     }
 
@@ -688,11 +840,12 @@
         // Keep default option list.
       }
     }
+    var checkboxSize = clampCheckboxSize(field.getAttribute(FIELD_SETTING_ATTRS.checkboxSize)) || CHECKBOX_SIZE_DEFAULT;
     var items = optionLabels.map(function (option, index) {
       return {
         label: option.label,
-        left: CHECKBOX_GROUP_PADDING,
-        top: CHECKBOX_GROUP_PADDING + index * CHECKBOX_ITEM_GAP,
+        left: getScaledCheckboxGroupPadding(checkboxSize),
+        top: getScaledCheckboxGroupPadding(checkboxSize) + index * (checkboxSize + getScaledCheckboxItemGap(checkboxSize)),
       };
     });
     var group = createCheckboxGroup(page, left, top, {
@@ -796,14 +949,152 @@
   }
 
   /**
+   * 按基准尺寸等比换算单选框组内边距。
+   * @param {number} size
+   * @returns {number}
+   */
+  function getScaledRadioGroupPadding(size) {
+    var resolved = clampRadioSize(size) || RADIO_SIZE_DEFAULT;
+    return Math.round(RADIO_GROUP_PADDING * resolved / RADIO_SIZE_DEFAULT);
+  }
+
+  /**
+   * 按基准尺寸等比换算单选框选项间距。
+   * @param {number} size
+   * @returns {number}
+   */
+  function getScaledRadioItemGap(size) {
+    var resolved = clampRadioSize(size) || RADIO_SIZE_DEFAULT;
+    return Math.round(RADIO_ITEM_GAP * resolved / RADIO_SIZE_DEFAULT);
+  }
+
+  /**
+   * @param {HTMLElement} group
+   * @returns {number}
+   */
+  function getRadioGroupPadding(group) {
+    return getScaledRadioGroupPadding(getRadioSize(group));
+  }
+
+  /**
+   * @param {HTMLElement} group
+   * @returns {number}
+   */
+  function getRadioItemGap(group) {
+    return getScaledRadioItemGap(getRadioSize(group));
+  }
+
+  /**
+   * 同步单选框组等比缩放相关的 CSS 变量。
+   * @param {HTMLElement} group
+   * @param {number} size
+   */
+  function syncRadioGroupScaleVars(group, size) {
+    if (!group) return;
+    var resolved = clampRadioSize(size) || RADIO_SIZE_DEFAULT;
+    var scale = resolved / RADIO_SIZE_DEFAULT;
+    group.style.setProperty("--ns-editor-radio-scale", String(scale));
+    group.style.setProperty(
+      "--ns-editor-radio-safety-gap",
+      Math.round(CHECKBOX_SAFETY_GAP_BASE * scale) + "px"
+    );
+  }
+
+  /**
+   * 单选框组内相邻选项的垂直步进（尺寸 + 间距）。
+   * @param {HTMLElement} group
+   * @returns {number}
+   */
+  function getRadioItemStep(group) {
+    return getRadioSize(group) + getRadioItemGap(group);
+  }
+
+  /**
+   * 计算单选框组内第 index 个选项的默认 top。
+   * @param {HTMLElement} group
+   * @param {number} index
+   * @returns {number}
+   */
+  function getRadioItemDefaultTop(group, index) {
+    return getRadioGroupPadding(group) + index * getRadioItemStep(group);
+  }
+
+  /**
+   * 计算新增单选框选项的 top。
+   * @param {HTMLElement} group
+   * @param {HTMLElement|null} lastItem
+   * @returns {number}
+   */
+  function getNextRadioItemTop(group, lastItem) {
+    if (!lastItem) return getRadioGroupPadding(group);
+    var lastTop = parseFloat(lastItem.style.top) || getRadioGroupPadding(group);
+    return lastTop + lastItem.offsetHeight + getRadioItemGap(group);
+  }
+
+  /**
+   * 按新尺寸等比重算单选框组内各选项位置（间距、内边距同步缩放）。
+   * @param {HTMLElement} group
+   * @param {number} newSize
+   * @param {number} oldSize
+   */
+  function relayoutRadioGroupItemsForSize(group, newSize, oldSize) {
+    var items = getRadioGroupItems(group);
+    if (!items.length) return;
+
+    var resolved = clampRadioSize(newSize) || RADIO_SIZE_DEFAULT;
+    var previous = clampRadioSize(oldSize) || RADIO_SIZE_DEFAULT;
+    if (resolved === previous) return;
+
+    var padding = getScaledRadioGroupPadding(resolved);
+    var gap = getScaledRadioItemGap(resolved);
+    var firstLeft = parseFloat(items[0].style.left);
+    if (!Number.isFinite(firstLeft)) firstLeft = getScaledRadioGroupPadding(previous);
+
+    var isVerticalStack = items.every(function (item) {
+      var left = parseFloat(item.style.left);
+      if (!Number.isFinite(left)) left = firstLeft;
+      return Math.abs(left - firstLeft) <= 1;
+    });
+
+    if (isVerticalStack) {
+      items.forEach(function (item, index) {
+        item.style.left = padding + "px";
+        item.style.top = padding + index * (resolved + gap) + "px";
+      });
+      return;
+    }
+
+    var scale = resolved / previous;
+    items.forEach(function (item) {
+      var left = parseFloat(item.style.left);
+      var top = parseFloat(item.style.top);
+      if (!Number.isFinite(left)) left = 0;
+      if (!Number.isFinite(top)) top = 0;
+      item.style.left = Math.round(left * scale) + "px";
+      item.style.top = Math.round(top * scale) + "px";
+    });
+  }
+
+  /**
    * 将尺寸同步到同一控件下的全部单选框选项。
    * @param {HTMLElement} group
    * @param {string|number} size
+   * @param {string|number} [previousSize]
    */
-  function applyRadioSizeToGroup(group, size) {
+  function applyRadioSizeToGroup(group, size, previousSize) {
     if (!group || !group.hasAttribute("data-radio-group")) return;
     var resolved = clampRadioSize(size) || RADIO_SIZE_DEFAULT;
+    var oldSize =
+      previousSize != null && previousSize !== ""
+        ? clampRadioSize(previousSize) || RADIO_SIZE_DEFAULT
+        : getRadioSize(group);
+
+    if (oldSize !== resolved) {
+      relayoutRadioGroupItemsForSize(group, resolved, oldSize);
+    }
+
     group.setAttribute(FIELD_SETTING_ATTRS.radioSize, String(resolved));
+    syncRadioGroupScaleVars(group, resolved);
     getRadioGroupItems(group).forEach(function (item) {
       item.style.width = resolved + "px";
       item.style.height = resolved + "px";
@@ -934,7 +1225,10 @@
     var frame = ensureRadioGroupFrame(group);
     var items = getRadioGroupItems(group);
     if (!frame || !items.length) return;
-    var padding = RADIO_GROUP_PADDING;
+    var size = getRadioSize(group);
+    var padding = getScaledRadioGroupPadding(size);
+    var addGap = Math.round(CHECKBOX_ADD_BTN_GAP * size / RADIO_SIZE_DEFAULT);
+    var addBtnSize = Math.round(CHECKBOX_ADD_BTN_SIZE * size / RADIO_SIZE_DEFAULT);
     var minLeft = Infinity;
     var minTop = Infinity;
     var maxRight = 0;
@@ -962,11 +1256,11 @@
     var addBtn = group.querySelector("[data-radio-group-add]");
     if (addBtn) {
       addBtn.style.left = frameLeft + frameWidth / 2 + "px";
-      addBtn.style.top = frameTop + frameHeight + 8 + "px";
+      addBtn.style.top = frameTop + frameHeight + addGap + "px";
     }
 
     group.style.width = Math.ceil(frameLeft + frameWidth) + "px";
-    group.style.height = Math.ceil(frameTop + frameHeight + 8 + 16) + "px";
+    group.style.height = Math.ceil(frameTop + frameHeight + addGap + addBtnSize) + "px";
   }
 
   /**
@@ -1068,8 +1362,8 @@
     var nextLabel = label || "选项" + (options.length + 1);
     var items = getRadioGroupItems(group);
     var last = items[items.length - 1];
-    var left = last ? parseFloat(last.style.left) || RADIO_GROUP_PADDING : RADIO_GROUP_PADDING;
-    var top = last ? (parseFloat(last.style.top) || RADIO_GROUP_PADDING) + RADIO_ITEM_GAP : RADIO_GROUP_PADDING;
+    var left = last ? parseFloat(last.style.left) || getRadioGroupPadding(group) : getRadioGroupPadding(group);
+    var top = getNextRadioItemTop(group, last);
     options.push({ label: nextLabel, checked: false });
     createRadioGroupItem(group, nextLabel, left, top, { isNew: true });
     setRadioOptions(group, options, { skipPreview: true });
@@ -1143,13 +1437,13 @@
         createRadioGroupItem(
           group,
           itemData.label || "选项" + (index + 1),
-          itemData.left != null ? itemData.left : RADIO_GROUP_PADDING,
-          itemData.top != null ? itemData.top : RADIO_GROUP_PADDING + index * RADIO_ITEM_GAP
+          itemData.left != null ? itemData.left : getRadioGroupPadding(group),
+          itemData.top != null ? itemData.top : getRadioItemDefaultTop(group, index)
         );
       });
       setRadioOptions(group, getRadioOptions(group), { skipPreview: true });
     } else {
-      createRadioGroupItem(group, "选项1", RADIO_GROUP_PADDING, RADIO_GROUP_PADDING);
+      createRadioGroupItem(group, "选项1", getRadioGroupPadding(group), getRadioGroupPadding(group));
       setRadioOptions(group, [{ label: "选项1", checked: true }], { skipPreview: true });
     }
 
@@ -1276,8 +1570,9 @@
     });
   }
 
-  function applyFieldStyleSettings(field) {
+  function applyFieldStyleSettings(field, context) {
     if (!field) return;
+    context = context || {};
     var type = field.getAttribute("data-field-type");
     field.style.removeProperty("--ns-field-font-size");
     field.style.removeProperty("--ns-field-font-family");
@@ -1295,10 +1590,12 @@
       return;
     }
     if (type === "checkbox" && field.hasAttribute("data-checkbox-group")) {
-      applyCheckboxSizeToGroup(field, getFieldSetting(field, "checkboxSize"));
+      var previousCheckboxSize = context.changedKey === "checkboxSize" ? context.previousValue : undefined;
+      applyCheckboxSizeToGroup(field, getFieldSetting(field, "checkboxSize"), previousCheckboxSize);
     }
     if (type === "radio" && field.hasAttribute("data-radio-group")) {
-      applyRadioSizeToGroup(field, getFieldSetting(field, "radioSize"));
+      var previousRadioSize = context.changedKey === "radioSize" ? context.previousValue : undefined;
+      applyRadioSizeToGroup(field, getFieldSetting(field, "radioSize"), previousRadioSize);
     }
   }
 
@@ -1422,6 +1719,49 @@
 
   function getActiveParty() {
     return document.body.getAttribute("data-party") || "purple";
+  }
+
+  /**
+   * 判断控件是否归属「发起方填写」。
+   * @param {HTMLElement|null} field
+   * @returns {boolean}
+   */
+  function isInitiatorFillField(field) {
+    return Boolean(field && field.getAttribute("data-party") === "gray");
+  }
+
+  /**
+   * 为手绘控件打开签署弹窗（仅发起方填写归属可打开）。
+   * @param {HTMLElement} field
+   * @returns {boolean} 是否已打开弹窗
+   */
+  function tryOpenHandwriteModal(field) {
+    if (!field || field.getAttribute("data-field-type") !== "handwrite") return false;
+    if (!isInitiatorFillField(field)) return false;
+    window._currentHandwriteField = field;
+    if (typeof window.openHandwriteModal === "function") {
+      window.openHandwriteModal();
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * 绑定画布控件的点击行为（手绘发起方填写打开弹窗，其余打开属性面板）。
+   * @param {HTMLElement} field
+   */
+  function bindPlacedFieldClick(field) {
+    if (!field || field.getAttribute("data-field-click-ready") === "true") return;
+    field.addEventListener("click", function (event) {
+      event.stopPropagation();
+      if (field.dataset.dragMoved === "true") {
+        field.dataset.dragMoved = "false";
+        return;
+      }
+      if (tryOpenHandwriteModal(field)) return;
+      openPropsPanel(field);
+    });
+    field.setAttribute("data-field-click-ready", "true");
   }
 
   function syncFieldParty(field, party) {
@@ -1915,6 +2255,7 @@
     setSelectValue(document.querySelector("[data-props-date-font-size]"), getFieldSetting(field, "dateFontSize"));
     setSelectValue(document.querySelector("[data-props-text-font-family]"), getFieldSetting(field, "textFontFamily"));
     setSelectValue(document.querySelector("[data-props-image-ratio]"), getFieldSetting(field, "imageRatio"));
+    setSelectValue(document.querySelector("[data-props-handwrite-mode]"), getFieldSetting(field, "handwriteMode"));
     var textMultiline = document.querySelector("[data-props-text-multiline]");
     if (textMultiline) textMultiline.checked = getFieldSetting(field, "textMultiline") === "true";
     var attachmentMultiple = document.querySelector("[data-props-attachment-allow-multiple]");
@@ -2368,7 +2709,32 @@
     updateFieldLabelVisibility(field);
   }
 
+  /**
+   * 根据控件尺寸同步手绘图标与内边距（缩小时图标等比缩小，最小可至 10px 控件）。
+   * @param {HTMLElement|null} field
+   */
+  function updateHandwriteFieldChrome(field) {
+    if (!field || field.getAttribute("data-field-type") !== "handwrite") return;
+
+    var width = field.offsetWidth;
+    var height = field.offsetHeight;
+    var padScale = Math.min(1, width / 40, height / 40);
+    var padX = Math.max(0, Math.round(HANDWRITE_BODY_PAD_X * padScale));
+    var padY = Math.max(0, Math.round(HANDWRITE_BODY_PAD_Y * padScale));
+    var availW = Math.max(0, width - padX * 2);
+    var availH = Math.max(0, height - padY * 2);
+    var iconSize = Math.min(HANDWRITE_ICON_BASE_SIZE, availW, availH);
+
+    field.style.setProperty("--ns-handwrite-body-pad-x", padX + "px");
+    field.style.setProperty("--ns-handwrite-body-pad-y", padY + "px");
+    field.style.setProperty("--ns-handwrite-icon-size", iconSize + "px");
+  }
+
   function updateFieldLabelVisibility(field) {
+    if (field && field.getAttribute("data-field-type") === "handwrite") {
+      updateHandwriteFieldChrome(field);
+    }
+
     var label = field ? field.querySelector(".ns-envelope-editor-field__label") : null;
     if (!label) return;
 
@@ -2549,9 +2915,10 @@
     );
   }
 
-  function buildFieldMarkup(type, label, iconSrc) {
+  function buildFieldMarkup(type, label, iconSrc, guideText) {
     var resolvedIcon = iconSrc || "assets/envelope-editor/icon-" + type + ".svg";
     var resolvedLabel = label || "";
+    var resolvedGuide = guideText || "";
 
     if (type === "text") {
       return (
@@ -2595,7 +2962,10 @@
         buildFieldIconMarkup(resolvedIcon, "md") +
         '<span class="ns-envelope-editor-field__label">' +
         resolvedLabel +
-        "</span></span></span>"
+        "</span></span>" +
+        '<span class="ns-envelope-editor-field__handwrite-guide" data-handwrite-guide>' +
+        resolvedGuide +
+        "</span></span>"
       );
     }
 
@@ -2651,6 +3021,17 @@
     syncTextFieldDisplay(field);
     if (!options.skipPropsSync) syncPropsGuideTextDisplay(field);
     schedulePagePreviewSync(field.closest("[data-pdf-page]"));
+  }
+
+  /**
+   * 同步手绘控件引导文案展示。
+   * @param {HTMLElement|null} field
+   */
+  function syncHandwriteGuideDisplay(field) {
+    if (!field || field.getAttribute("data-field-type") !== "handwrite") return;
+    var guide = field.querySelector("[data-handwrite-guide]");
+    if (!guide) return;
+    guide.textContent = getFieldSetting(field, "handwriteGuide") || "";
   }
 
   function finishTextFieldEdit(field) {
@@ -2722,9 +3103,10 @@
     if (!field) return;
     options = options || {};
     var guideText = type === "text" ? getFieldGuideText(field) : "";
+    var handwriteGuide = type === "handwrite" ? getFieldSetting(field, "handwriteGuide") : "";
     field.setAttribute("data-field-type", type);
     if (type === "text") field.removeAttribute("data-text-field-ready");
-    field.innerHTML = buildFieldMarkup(type, label, iconSrc);
+    field.innerHTML = buildFieldMarkup(type, label, iconSrc, handwriteGuide);
     if (type === "text") {
       field.setAttribute("data-field-guide-text", guideText);
       syncTextFieldDisplay(field);
@@ -3335,14 +3717,7 @@
     field.style.left = Math.max(8, Math.round(x - anchor.x)) + "px";
     field.style.top = Math.max(8, Math.round(y - anchor.y)) + "px";
     syncFieldParty(field, getActiveParty());
-    field.addEventListener("click", function (event) {
-      event.stopPropagation();
-      if (field.dataset.dragMoved === "true") {
-        field.dataset.dragMoved = "false";
-        return;
-      }
-      openPropsPanel(field);
-    });
+    bindPlacedFieldClick(field);
     makeFieldDraggable(field);
     return field;
   }
@@ -3567,14 +3942,7 @@
         }
       }
       makeFieldDraggable(field);
-      field.addEventListener("click", function (event) {
-        event.stopPropagation();
-        if (field.dataset.dragMoved === "true") {
-          field.dataset.dragMoved = "false";
-          return;
-        }
-        openPropsPanel(field);
-      });
+      bindPlacedFieldClick(field);
     });
   }
 
@@ -3797,7 +4165,11 @@
 
     if (handwriteFontSize) {
       handwriteFontSize.addEventListener("input", function () {
-        setFieldSetting(getEditingField(), "handwriteFontSize", handwriteFontSize.value || FIELD_DEFAULT_SETTINGS.handwriteFontSize);
+        var field = getEditingField();
+        setFieldSetting(field, "handwriteFontSize", handwriteFontSize.value || FIELD_DEFAULT_SETTINGS.handwriteFontSize);
+        if (field && typeof window.syncHandwriteModalGuideText === "function") {
+          window.syncHandwriteModalGuideText(field);
+        }
       });
     }
 
@@ -3830,7 +4202,14 @@
 
     if (handwriteGuide) {
       handwriteGuide.addEventListener("input", function () {
-        setFieldSetting(getEditingField(), "handwriteGuide", handwriteGuide.value);
+        var editingField = getEditingField();
+        setFieldSetting(editingField, "handwriteGuide", handwriteGuide.value);
+        if (editingField) {
+          syncHandwriteGuideDisplay(editingField);
+          if (typeof window.syncHandwriteModalGuideText === "function") {
+            window.syncHandwriteModalGuideText(editingField);
+          }
+        }
       });
     }
 
@@ -3889,6 +4268,7 @@
     bindSelectSetting("[data-props-date-font-size]", "dateFontSize");
     bindSelectSetting("[data-props-text-font-family]", "textFontFamily");
     bindSelectSetting("[data-props-image-ratio]", "imageRatio");
+    bindSelectSetting("[data-props-handwrite-mode]", "handwriteMode");
 
     if (remove) {
       remove.addEventListener("click", function () {

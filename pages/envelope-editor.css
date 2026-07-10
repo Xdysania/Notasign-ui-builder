@@ -20,6 +20,7 @@ body.ns-envelope-editor-app {
   --ns-editor-close-icon-size: 20px;
   --ns-editor-tools-width: 240px;
   --ns-editor-thumbs-width: 221px;
+  --ns-editor-props-descriptive-menu-width: 320px;
   --ns-editor-party-color: #c6a7ff;
   --ns-editor-party-bg: rgb(198 167 255 / 22%);
   --ns-editor-party-border: rgb(198 167 255 / 35%);
@@ -969,6 +970,8 @@ body.ns-envelope-editor-app {
   z-index: 1;
   box-sizing: border-box;
   pointer-events: none;
+  --ns-editor-checkbox-scale: 1;
+  --ns-editor-checkbox-safety-gap: 4px;
 }
 
 .ns-envelope-editor-checkbox-group__frame {
@@ -978,13 +981,15 @@ body.ns-envelope-editor-app {
   box-sizing: border-box;
   pointer-events: none;
   z-index: 0;
+  border: none;
+  background-color: transparent;
+  outline: 1px dashed color-mix(in srgb, var(--ns-editor-party-color, var(--ns-color-brand)) 40%, transparent);
+  outline-offset: 0;
 }
 
 .ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-checkbox-group__frame {
   background-color: transparent;
-  border: none;
   outline: 1px dashed var(--ns-editor-party-color);
-  outline-offset: 0;
 }
 
 .ns-envelope-editor-checkbox-group .ns-envelope-editor-field {
@@ -1003,34 +1008,39 @@ body.ns-envelope-editor-app {
   padding: 0;
 }
 
-.ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-field.is-active-item {
-  border-width: 0;
-  background: transparent;
-  --ns-editor-checkbox-safety-gap: 4px;
-  z-index: 3;
+.ns-envelope-editor-checkbox-group .ns-envelope-editor-field[data-checkbox-item] {
+  --ns-editor-checkbox-safety-gap: inherit;
 }
 
-.ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-field.is-active-item::after {
+.ns-envelope-editor-checkbox-group .ns-envelope-editor-field[data-checkbox-item]::after {
   content: "";
   position: absolute;
   z-index: 0;
   inset: calc(var(--ns-editor-checkbox-safety-gap) * -1);
   box-sizing: border-box;
-  border: var(--ns-border-width) solid var(--ns-editor-party-color);
+  border: var(--ns-border-width) solid color-mix(in srgb, var(--ns-editor-party-color) 40%, transparent);
   border-radius: calc((var(--ns-editor-checkbox-size, 18px) + var(--ns-editor-checkbox-safety-gap) * 2) * 2 / 32);
-  background-color: var(--ns-editor-party-bg);
+  background-color: color-mix(in srgb, var(--ns-editor-party-bg) 40%, transparent);
   pointer-events: none;
+}
+
+.ns-envelope-editor-checkbox-group .ns-envelope-editor-field[data-checkbox-item] .ns-envelope-editor-checkbox-box {
+  position: relative;
+  z-index: 1;
+}
+
+.ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-field.is-active-item {
+  z-index: 3;
+}
+
+.ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-field.is-active-item::after {
+  border-color: var(--ns-editor-party-color);
+  background-color: var(--ns-editor-party-bg);
 }
 
 .ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-field.is-active-item:not(.is-checked) .ns-envelope-editor-field__checkbox.ns-envelope-editor-checkbox-box {
   border-color: var(--ns-color-text-hint);
   background-color: var(--ns-color-bg-page);
-}
-
-.ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-field.is-active-item .ns-envelope-editor-checkbox-box {
-  position: relative;
-  z-index: 1;
-  outline: none;
 }
 
 .ns-envelope-editor-checkbox-group [data-checkbox-item][data-field-required="true"]::before {
@@ -1057,12 +1067,12 @@ body.ns-envelope-editor-app {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: calc(16px * var(--ns-editor-checkbox-scale, 1));
+  height: calc(16px * var(--ns-editor-checkbox-scale, 1));
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 2px;
+  border-radius: calc(2px * var(--ns-editor-checkbox-scale, 1));
   background-color: var(--ns-editor-party-color);
   color: var(--ns-color-bg-page);
   cursor: pointer;
@@ -1081,13 +1091,13 @@ body.ns-envelope-editor-app {
 }
 
 .ns-envelope-editor-checkbox-group__add::before {
-  width: 8px;
-  height: 2px;
+  width: calc(8px * var(--ns-editor-checkbox-scale, 1));
+  height: calc(2px * var(--ns-editor-checkbox-scale, 1));
 }
 
 .ns-envelope-editor-checkbox-group__add::after {
-  width: 2px;
-  height: 8px;
+  width: calc(2px * var(--ns-editor-checkbox-scale, 1));
+  height: calc(8px * var(--ns-editor-checkbox-scale, 1));
 }
 
 .ns-envelope-editor-checkbox-group.is-selected .ns-envelope-editor-checkbox-group__add {
@@ -1104,6 +1114,8 @@ body.ns-envelope-editor-app {
   z-index: 1;
   box-sizing: border-box;
   pointer-events: none;
+  --ns-editor-radio-scale: 1;
+  --ns-editor-radio-safety-gap: 4px;
 }
 
 .ns-envelope-editor-radio-group__frame {
@@ -1113,13 +1125,15 @@ body.ns-envelope-editor-app {
   box-sizing: border-box;
   pointer-events: none;
   z-index: 0;
+  border: none;
+  background-color: transparent;
+  outline: 1px dashed color-mix(in srgb, var(--ns-editor-party-color, var(--ns-color-brand)) 40%, transparent);
+  outline-offset: 0;
 }
 
 .ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-radio-group__frame {
   background-color: transparent;
-  border: none;
   outline: 1px dashed var(--ns-editor-party-color);
-  outline-offset: 0;
 }
 
 .ns-envelope-editor-radio-group .ns-envelope-editor-field {
@@ -1138,34 +1152,39 @@ body.ns-envelope-editor-app {
   padding: 0;
 }
 
-.ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-field.is-active-item {
-  border-width: 0;
-  background: transparent;
-  --ns-editor-radio-safety-gap: 4px;
-  z-index: 3;
+.ns-envelope-editor-radio-group .ns-envelope-editor-field[data-radio-item] {
+  --ns-editor-radio-safety-gap: inherit;
 }
 
-.ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-field.is-active-item::after {
+.ns-envelope-editor-radio-group .ns-envelope-editor-field[data-radio-item]::after {
   content: "";
   position: absolute;
   z-index: 0;
   inset: calc(var(--ns-editor-radio-safety-gap) * -1);
   box-sizing: border-box;
-  border: var(--ns-border-width) solid var(--ns-editor-party-color);
+  border: var(--ns-border-width) solid color-mix(in srgb, var(--ns-editor-party-color) 40%, transparent);
   border-radius: calc((var(--ns-editor-radio-size, 18px) + var(--ns-editor-radio-safety-gap) * 2) * 2 / 32);
-  background-color: var(--ns-editor-party-bg);
+  background-color: color-mix(in srgb, var(--ns-editor-party-bg) 40%, transparent);
   pointer-events: none;
+}
+
+.ns-envelope-editor-radio-group .ns-envelope-editor-field[data-radio-item] .ns-envelope-editor-radio-circle {
+  position: relative;
+  z-index: 1;
+}
+
+.ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-field.is-active-item {
+  z-index: 3;
+}
+
+.ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-field.is-active-item::after {
+  border-color: var(--ns-editor-party-color);
+  background-color: var(--ns-editor-party-bg);
 }
 
 .ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-field.is-active-item:not(.is-checked) .ns-envelope-editor-field__radio.ns-envelope-editor-radio-circle {
   border-color: var(--ns-color-text-hint);
   background-color: var(--ns-color-bg-page);
-}
-
-.ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-field.is-active-item .ns-envelope-editor-radio-circle {
-  position: relative;
-  z-index: 1;
-  outline: none;
 }
 
 .ns-envelope-editor-radio-group [data-radio-item][data-field-required="true"]::before {
@@ -1192,12 +1211,12 @@ body.ns-envelope-editor-app {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: calc(16px * var(--ns-editor-radio-scale, 1));
+  height: calc(16px * var(--ns-editor-radio-scale, 1));
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 2px;
+  border-radius: calc(2px * var(--ns-editor-radio-scale, 1));
   background-color: var(--ns-editor-party-color);
   color: var(--ns-color-bg-page);
   cursor: pointer;
@@ -1216,13 +1235,13 @@ body.ns-envelope-editor-app {
 }
 
 .ns-envelope-editor-radio-group__add::before {
-  width: 8px;
-  height: 2px;
+  width: calc(8px * var(--ns-editor-radio-scale, 1));
+  height: calc(2px * var(--ns-editor-radio-scale, 1));
 }
 
 .ns-envelope-editor-radio-group__add::after {
-  width: 2px;
-  height: 8px;
+  width: calc(2px * var(--ns-editor-radio-scale, 1));
+  height: calc(8px * var(--ns-editor-radio-scale, 1));
 }
 
 .ns-envelope-editor-radio-group.is-selected .ns-envelope-editor-radio-group__add {
@@ -1322,10 +1341,48 @@ body.ns-envelope-editor-app {
 }
 
 .ns-envelope-editor-field__body--handwrite {
+  position: relative;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 6px 8px;
+  padding: var(--ns-handwrite-body-pad-y, 6px) var(--ns-handwrite-body-pad-x, 8px);
   overflow: hidden;
+}
+
+.ns-envelope-editor-field__handwrite-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+  display: none;
+}
+
+.ns-envelope-editor-field__handwrite-image.is-visible {
+  display: block;
+}
+
+.ns-envelope-editor-field__body--handwrite .ns-envelope-editor-field__meta.is-hidden {
+  display: none;
+}
+
+.ns-envelope-editor-field__handwrite-guide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: var(--ns-field-font-size, 12px);
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ns-envelope-editor-field__handwrite-guide.is-hidden {
+  display: none;
 }
 
 .ns-envelope-editor-field__meta {
@@ -1338,6 +1395,10 @@ body.ns-envelope-editor-app {
 
 .ns-envelope-editor-field__body--handwrite .ns-envelope-editor-field__icon {
   opacity: 1;
+  width: var(--ns-handwrite-icon-size, 20px);
+  height: var(--ns-handwrite-icon-size, 20px);
+  max-width: var(--ns-handwrite-icon-size, 20px);
+  max-height: var(--ns-handwrite-icon-size, 20px);
 }
 
 .ns-envelope-editor-field__body--handwrite .ns-envelope-editor-field__label {
@@ -2049,6 +2110,30 @@ body.ns-envelope-editor-app {
   width: 100%;
 }
 
+/**
+ * 属性栏 descriptive 下拉：仅菜单加宽并向左展开，侧栏宽度保持不变。
+ */
+.ns-envelope-editor-props .ns-select--descriptive.is-open {
+  z-index: calc(var(--ns-z-dropdown) + 1);
+}
+
+.ns-envelope-editor-props .ns-select--descriptive .ns-select__menu {
+  right: 0;
+  left: auto;
+  width: var(--ns-editor-props-descriptive-menu-width);
+  min-width: var(--ns-editor-props-descriptive-menu-width);
+  max-width: min(var(--ns-editor-props-descriptive-menu-width), calc(100vw - var(--ns-editor-tools-width) - var(--ns-spacing-32)));
+}
+
+.ns-envelope-editor-props:has(.ns-select--descriptive.is-open),
+.ns-envelope-editor-props__body:has(.ns-select--descriptive.is-open) {
+  overflow: visible;
+}
+
+.ns-envelope-editor.is-props-open:has(.ns-select--descriptive.is-open) {
+  overflow: visible;
+}
+
 /* 属性栏表单控件描边统一：默认 #eaebf0，聚焦 --ns-color-border-selected */
 .ns-envelope-editor-props .ns-input,
 .ns-envelope-editor-props .ns-textarea,
@@ -2069,6 +2154,19 @@ body.ns-envelope-editor-app {
 .ns-envelope-editor-props .ns-select__trigger:hover,
 .ns-envelope-editor-props .ns-btn--secondary:hover:not(:disabled) {
   border-color: var(--ns-color-border-strong);
+}
+
+.ns-envelope-editor-props .ns-btn--secondary-brand:hover:not(:disabled),
+.ns-envelope-editor-props .ns-btn--secondary-brand:focus-visible:not(:disabled) {
+  background-color: var(--ns-color-bg-page);
+  border-color: var(--ns-color-brand);
+  color: var(--ns-color-text-brand);
+}
+
+.ns-envelope-editor-props .ns-btn--secondary-brand:active:not(:disabled) {
+  background-color: var(--ns-color-bg-page);
+  border-color: var(--ns-color-brand-active);
+  color: var(--ns-color-text-brand-active);
 }
 
 .ns-envelope-editor-props .ns-input:focus,

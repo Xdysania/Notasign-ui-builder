@@ -19,6 +19,7 @@ python3 -m http.server 8080
 | `index.html` | 页面入口（对应 `pages/envelope-editor.html`） |
 | `envelope-editor.css` | 页面样式 |
 | `envelope-editor.js` | 页面交互逻辑 |
+| `handwrite-modal.css` / `handwrite-modal.js` | 手绘弹窗样式与交互 |
 | `notasign-design-system.css` | 设计系统基础样式 |
 | `components/` | Select、InputNumber、i18n |
 | `assets/envelope-editor/` | 编辑器图标 |
@@ -26,5 +27,5 @@ python3 -m http.server 8080
 
 ## 源文件维护
 
-- 开发维护路径：`pages/envelope-editor.html`、`pages/envelope-editor.css`、`pages/envelope-editor.js`
+- 开发维护路径：`pages/envelope-editor.html`、`pages/envelope-editor.css`、`pages/envelope-editor.js`、`pages/handwrite-modal.*`
 - 更新交付包：`bash scripts/export-envelope-editor-standalone.sh`

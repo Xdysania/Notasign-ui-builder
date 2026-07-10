@@ -45,7 +45,10 @@
 
       function getOptionTriggerLabel(option) {
         var triggerText = option.getAttribute("data-trigger-text");
-        return triggerText || option.textContent.trim();
+        if (triggerText) return triggerText;
+        var labelEl = option.querySelector("strong") || option.querySelector(".ns-select__option-label");
+        if (labelEl) return labelEl.textContent.trim();
+        return option.textContent.trim();
       }
 
       function setValue(value) {
